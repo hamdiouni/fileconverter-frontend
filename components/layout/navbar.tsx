@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, LayoutDashboard, LogOut } from 'lucide-react';
+import { ChevronDown, Menu, X, LayoutDashboard, LogOut, Settings, Key, Webhook } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Container } from './container';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
@@ -156,10 +156,25 @@ export function Navbar() {
                       <span className="max-w-[120px] truncate text-xs">{user.email}</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuContent align="end" className="w-52">
                     <DropdownMenuItem asChild>
                       <Link href="/dashboard" className="gap-2 cursor-pointer">
                         <LayoutDashboard className="h-4 w-4" /> Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/settings" className="gap-2 cursor-pointer">
+                        <Settings className="h-4 w-4" /> Settings
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard/api-keys" className="gap-2 cursor-pointer">
+                        <Key className="h-4 w-4" /> API Keys
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard/webhooks" className="gap-2 cursor-pointer">
+                        <Webhook className="h-4 w-4" /> Webhooks
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />

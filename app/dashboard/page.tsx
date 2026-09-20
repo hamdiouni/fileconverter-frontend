@@ -292,7 +292,7 @@ export default function DashboardPage() {
             {[
               { href: '/convert', icon: Zap, label: 'New conversion', desc: 'Upload & convert a file' },
               { href: '/tools',   icon: FileText, label: 'Browse tools', desc: 'Explore all formats' },
-              { href: '/auth/api-keys', icon: Key, label: 'API keys', desc: 'Manage access keys' },
+              { href: '/dashboard/api-keys', icon: Key, label: 'API keys', desc: 'Manage access keys' },
             ].map(({ href, icon: Icon, label, desc }) => (
               <Link key={label} href={href}>
                 <Card className="hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer h-full">
