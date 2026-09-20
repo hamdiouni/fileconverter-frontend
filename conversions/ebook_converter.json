@@ -1,0 +1,865 @@
+{
+  "Ebook Converter": {
+    "AZW Converter": {
+      "description": "AZW is Amazon Kindle proprietary ebook format with DRM protection",
+      "conversions": [
+        {
+          "operation": "AZW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AZW3 Converter": {
+      "description": "AZW3 is Amazon newer Kindle format based on EPUB with enhanced features and DRM",
+      "conversions": [
+        {
+          "operation": "AZW3 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW3 to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AZW4 Converter": {
+      "description": "AZW4 is Amazon Kindle format specifically designed for PDF-style content and textbooks",
+      "conversions": [
+        {
+          "operation": "AZW4 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "AZW4 to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CBC Converter": {
+      "description": "CBC (Comic Book Collection) is a compressed archive format for storing comic book pages",
+      "conversions": [
+        {
+          "operation": "CBC to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBC to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CBR Converter": {
+      "description": "CBR (Comic Book RAR) is a comic book archive format using RAR compression",
+      "conversions": [
+        {
+          "operation": "CBR to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBR to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CBZ Converter": {
+      "description": "CBZ (Comic Book ZIP) is a comic book archive format using ZIP compression",
+      "conversions": [
+        {
+          "operation": "CBZ to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CBZ to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CHM Converter": {
+      "description": "CHM (Compiled HTML Help) is Microsoft help file format containing HTML documentation",
+      "conversions": [
+        {
+          "operation": "CHM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "CHM to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "EPUB Converter": {
+      "description": "EPUB is the open standard ebook format widely supported across different reading devices",
+      "conversions": [
+        {
+          "operation": "EPUB to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPUB to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "FB2 Converter": {
+      "description": "FB2 (FictionBook) is an XML-based ebook format popular in Russia and Eastern Europe",
+      "conversions": [
+        {
+          "operation": "FB2 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "FB2 to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "HTM Converter": {
+      "description": "HTM is HTML file format that can be used for simple ebook creation and web publishing",
+      "conversions": [
+        {
+          "operation": "HTM to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTM to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "HTMLZ Converter": {
+      "description": "HTMLZ is a compressed HTML ebook format that packages HTML content into a single file",
+      "conversions": [
+        {
+          "operation": "HTMLZ to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTMLZ to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LIT Converter": {
+      "description": "LIT is Microsoft discontinued ebook format that was used with Microsoft Reader",
+      "conversions": [
+        {
+          "operation": "LIT to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "LIT to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LRF Converter": {
+      "description": "LRF (LiBRie File) is Sony proprietary ebook format used in early Sony Reader devices",
+      "conversions": [
+        {
+          "operation": "LRF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "LRF to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "MOBI Converter": {
+      "description": "MOBI is Mobipocket ebook format, the predecessor to Amazon Kindle formats",
+      "conversions": [
+        {
+          "operation": "MOBI to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOBI to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PDB Converter": {
+      "description": "PDB (Palm Database) is Palm Pilot database format that can store ebook content",
+      "conversions": [
+        {
+          "operation": "PDB to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDB to OEB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PML Converter": {
+      "description": "PML (Palm Markup Language) is a markup language for creating ebooks on Palm devices",
+      "conversions": [
+        {
+          "operation": "PML to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PML to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PRC Converter": {
+      "description": "PRC (Palm Resource) is Palm Pilot resource format that can contain ebook data",
+      "conversions": [
+        {
+          "operation": "PRC to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PRC to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RB Converter": {
+      "description": "RB (Rocket eBook) is an early proprietary ebook format from the late 1990s",
+      "conversions": [
+        {
+          "operation": "RB to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "RB to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "SNB Converter": {
+      "description": "SNB is Shanda Bambook ebook format used by Chinese ebook readers",
+      "conversions": [
+        {
+          "operation": "SNB to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "SNB to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TCR Converter": {
+      "description": "TCR is Text Compression for Reader format designed for Psion handheld devices",
+      "conversions": [
+        {
+          "operation": "TCR to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TCR to PDB",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TXTZ Converter": {
+      "description": "TXTZ is a compressed text format that packages plain text into a smaller file size",
+      "conversions": [
+        {
+          "operation": "TXTZ to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXTZ to PDB",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

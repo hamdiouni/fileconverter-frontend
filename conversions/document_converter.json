@@ -1,0 +1,1029 @@
+{
+  "Document Converter": {
+    "ABW Converter": {
+      "description": "ABW is AbiWord native document format, an open-source word processor file format",
+      "conversions": [
+        {
+          "operation": "ABW to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ABW to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DJVU Converter": {
+      "description": "DJVU is a compressed image format designed for storing scanned documents and books",
+      "conversions": [
+        {
+          "operation": "DJVU to PDF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DOC Converter": {
+      "description": "DOC is Microsoft Word legacy binary document format used before Office 2007",
+      "conversions": [
+        {
+          "operation": "DOC to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOC to XPS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DOCM Converter": {
+      "description": "DOCM is Microsoft Word macro-enabled document format based on Open XML",
+      "conversions": [
+        {
+          "operation": "DOCM to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCM to XPS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DOCX Converter": {
+      "description": "DOCX is Microsoft Word modern XML-based document format, the current standard",
+      "conversions": [
+        {
+          "operation": "DOCX to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOCX to XPS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DOT Converter": {
+      "description": "DOT is Microsoft Word document template format for creating standardized documents",
+      "conversions": [
+        {
+          "operation": "DOT to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOT to XPS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DOTX Converter": {
+      "description": "DOTX is Microsoft Word XML-based template format introduced with Office 2007",
+      "conversions": [
+        {
+          "operation": "DOTX to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DOTX to XPS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "HTML Converter": {
+      "description": "HTML (HyperText Markup Language) is the standard markup language for web pages and documents",
+      "conversions": [
+        {
+          "operation": "HTML to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to MD",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to TEX",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HTML to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "HWP Converter": {
+      "description": "HWP is Hangul Word Processor document format, popular in South Korea",
+      "conversions": [
+        {
+          "operation": "HWP to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HWP to XPS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LWP Converter": {
+      "description": "LWP is Lotus Word Pro document format from IBM Lotus SmartSuite office package",
+      "conversions": [
+        {
+          "operation": "LWP to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "LWP to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "MD Converter": {
+      "description": "MD (Markdown) is a lightweight markup language for creating formatted text using plain text editor",
+      "conversions": [
+        {
+          "operation": "MD to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to MD",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to RST",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to TEX",
+          "progress": "not started"
+        },
+        {
+          "operation": "MD to TXT",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ODT Converter": {
+      "description": "ODT (OpenDocument Text) is an open standard document format used by LibreOffice and OpenOffice",
+      "conversions": [
+        {
+          "operation": "ODT to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODT to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PAGES Converter": {
+      "description": "PAGES is Apple word processor document format used in the iWork office suite",
+      "conversions": [
+        {
+          "operation": "PAGES to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PAGES to XLS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PDF Converter": {
+      "description": "PDF (Portable Document Format) is a universal document format that preserves formatting across platforms",
+      "conversions": [
+        {
+          "operation": "PDF to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to XLS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to XLSX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PDF to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RST Converter": {
+      "description": "RST (reStructuredText) is a lightweight markup language used for technical documentation",
+      "conversions": [
+        {
+          "operation": "RST to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "RST to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "RST to MD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RST to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "RST to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RST to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RST to TXT",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RTF Converter": {
+      "description": "RTF (Rich Text Format) is a cross-platform document format that preserves basic formatting",
+      "conversions": [
+        {
+          "operation": "RTF to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RTF to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TEX Converter": {
+      "description": "TEX is a typesetting system markup language used for creating professional scientific documents",
+      "conversions": [
+        {
+          "operation": "TEX to MD",
+          "progress": "not started"
+        },
+        {
+          "operation": "TEX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TEX to TXT",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TXT Converter": {
+      "description": "TXT is plain text format containing unformatted text, readable by any text editor",
+      "conversions": [
+        {
+          "operation": "TXT to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to MD",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to TEX",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to AZW3",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to EPUB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to LRF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to MOBI",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to OEB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to PDB",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "TXT to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WPD Converter": {
+      "description": "WPD is WordPerfect document format, once popular before Microsoft Word dominance",
+      "conversions": [
+        {
+          "operation": "WPD to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPD to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WPS Converter": {
+      "description": "WPS is Microsoft Works word processor document format from the Works office suite",
+      "conversions": [
+        {
+          "operation": "WPS to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "WPS to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ZABW Converter": {
+      "description": "ZABW is compressed AbiWord document format that reduces file size while maintaining compatibility",
+      "conversions": [
+        {
+          "operation": "ZABW to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to DOCX",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to ODT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to RTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZABW to PNG",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

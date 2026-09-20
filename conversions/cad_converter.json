@@ -1,0 +1,106 @@
+{
+  "CAD Converter": {
+    "DWG Converter": {
+      "description": "DWG is AutoCAD native file format for storing 2D and 3D design data and metadata",
+      "conversions": [
+        {
+          "operation": "DWG to DWG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to CGM",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DWG to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DXF Converter": {
+      "description": "DXF (Drawing Exchange Format) is an open CAD file format for enabling data interoperability between AutoCAD and other programs",
+      "conversions": [
+        {
+          "operation": "DXF to DWG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to CGM",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DXF to WMF",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,438 @@
+{
+  "Presentation Converter": {
+    "DPS Converter": {
+      "description": "DPS is Kingsoft Presentation format used in WPS Office suite, popular in Asia",
+      "conversions": [
+        {
+          "operation": "DPS to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "DPS to SWF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "KEY Converter": {
+      "description": "KEY is Apple Keynote presentation format used in iWork office suite for macOS and iOS",
+      "conversions": [
+        {
+          "operation": "KEY to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "KEY to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "KEY to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "KEY to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "KEY to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "KEY to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "KEY to XLS",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ODP Converter": {
+      "description": "ODP (OpenDocument Presentation) is the open standard presentation format used by LibreOffice Impress",
+      "conversions": [
+        {
+          "operation": "ODP to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODP to SWF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "POT Converter": {
+      "description": "POT is Microsoft PowerPoint template format for creating standardized presentation layouts",
+      "conversions": [
+        {
+          "operation": "POT to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "POT to EMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "POTX Converter": {
+      "description": "POTX is Microsoft PowerPoint XML-based template format introduced with Office 2007",
+      "conversions": [
+        {
+          "operation": "POTX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "POTX to EMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PPS Converter": {
+      "description": "PPS is Microsoft PowerPoint slideshow format that opens directly in presentation mode",
+      "conversions": [
+        {
+          "operation": "PPS to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPS to SWF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PPSX Converter": {
+      "description": "PPSX is Microsoft PowerPoint XML-based slideshow format that plays automatically",
+      "conversions": [
+        {
+          "operation": "PPSX to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPSX to SWF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PPT Converter": {
+      "description": "PPT is Microsoft PowerPoint legacy binary presentation format used before Office 2007",
+      "conversions": [
+        {
+          "operation": "PPT to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPT to SWF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PPTM Converter": {
+      "description": "PPTM is Microsoft PowerPoint macro-enabled presentation format based on Open XML",
+      "conversions": [
+        {
+          "operation": "PPTM to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to PPTX",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTM to SWF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PPTX Converter": {
+      "description": "PPTX is Microsoft PowerPoint modern XML-based presentation format, the current standard",
+      "conversions": [
+        {
+          "operation": "PPTX to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to TXT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to ODP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPTX to SWF",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

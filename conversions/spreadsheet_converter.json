@@ -1,0 +1,259 @@
+{
+  "Spreadsheet Converter": {
+    "CSV Converter": {
+      "description": "CSV (Comma-Separated Values) is a simple text format for storing tabular data with wide compatibility",
+      "conversions": [
+        {
+          "operation": "CSV to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "CSV to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CSV to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CSV to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CSV to ODS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CSV to XLS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CSV to XLSX",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ET Converter": {
+      "description": "ET is Kingsoft Spreadsheets format used in WPS Office suite, popular in Asian markets",
+      "conversions": [
+        {
+          "operation": "ET to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to CSV",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to ODS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to XLS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ET to XLSX",
+          "progress": "not started"
+        }
+      ]
+    },
+    "NUMBERS Converter": {
+      "description": "NUMBERS is Apple spreadsheet format used in iWork office suite for macOS and iOS devices",
+      "conversions": [
+        {
+          "operation": "NUMBERS to DOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to PPT",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to CSV",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to XLS",
+          "progress": "not started"
+        },
+        {
+          "operation": "NUMBERS to XLSX",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ODS Converter": {
+      "description": "ODS (OpenDocument Spreadsheet) is the open standard spreadsheet format used by LibreOffice Calc",
+      "conversions": [
+        {
+          "operation": "ODS to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODS to CSV",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODS to XLS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODS to XLSX",
+          "progress": "not started"
+        }
+      ]
+    },
+    "XLS Converter": {
+      "description": "XLS is Microsoft Excel legacy binary spreadsheet format used before Office 2007",
+      "conversions": [
+        {
+          "operation": "XLS to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to CSV",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to ODS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLS to XLSX",
+          "progress": "not started"
+        }
+      ]
+    },
+    "XLSM Converter": {
+      "description": "XLSM is Microsoft Excel macro-enabled spreadsheet format based on Open XML with VBA support",
+      "conversions": [
+        {
+          "operation": "XLSM to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to CSV",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to ODS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to XLS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSM to XLSX",
+          "progress": "not started"
+        }
+      ]
+    },
+    "XLSX Converter": {
+      "description": "XLSX is Microsoft Excel modern XML-based spreadsheet format, the current industry standard",
+      "conversions": [
+        {
+          "operation": "XLSX to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to XPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to CSV",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to ODS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XLSX to XLS",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

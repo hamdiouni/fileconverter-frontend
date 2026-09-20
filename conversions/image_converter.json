@@ -1,0 +1,2264 @@
+{
+  "Image Converter": {
+    "3FR Converter": {
+      "description": "3FR is Hasselblad raw image format used by Hasselblad digital cameras",
+      "conversions": [
+        {
+          "operation": "3FR to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "3FR to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ARW Converter": {
+      "description": "ARW is Sony raw image format used by Sony Alpha series digital cameras",
+      "conversions": [
+        {
+          "operation": "ARW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARW to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AVIF Converter": {
+      "description": "AVIF is a modern image format based on AV1 video codec, offering superior compression",
+      "conversions": [
+        {
+          "operation": "AVIF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AVIF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "BMP Converter": {
+      "description": "BMP (Bitmap) is an uncompressed raster image format developed by Microsoft",
+      "conversions": [
+        {
+          "operation": "BMP to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "BMP to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CR2 Converter": {
+      "description": "CR2 is Canon Raw version 2, the raw image format used by Canon digital cameras",
+      "conversions": [
+        {
+          "operation": "CR2 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR2 to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CR3 Converter": {
+      "description": "CR3 is Canon Raw version 3, the newer raw format used by Canon mirrorless cameras",
+      "conversions": [
+        {
+          "operation": "CR3 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CR3 to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CRW Converter": {
+      "description": "CRW is Canon Raw, the original raw image format used by early Canon digital cameras",
+      "conversions": [
+        {
+          "operation": "CRW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CRW to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DCR Converter": {
+      "description": "DCR is Kodak raw image format used by Kodak digital cameras",
+      "conversions": [
+        {
+          "operation": "DCR to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DCR to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DNG Converter": {
+      "description": "DNG (Digital Negative) is Adobe open standard raw image format for digital photography",
+      "conversions": [
+        {
+          "operation": "DNG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DNG to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "EPS Converter": {
+      "description": "EPS (Encapsulated PostScript) is a vector graphics format used for scalable images",
+      "conversions": [
+        {
+          "operation": "EPS to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "EPS to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ERF Converter": {
+      "description": "ERF is Epson raw image format used by Epson digital cameras",
+      "conversions": [
+        {
+          "operation": "ERF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ERF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "GIF Converter": {
+      "description": "GIF is a bitmap image format supporting animation and transparency with limited colors",
+      "conversions": [
+        {
+          "operation": "GIF to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to WMA",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to AVI",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to FLV",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to MKV",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to MOV",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to MP4",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to WEBM",
+          "progress": "not started"
+        },
+        {
+          "operation": "GIF to WMV",
+          "progress": "not started"
+        }
+      ]
+    },
+    "HEIC Converter": {
+      "description": "HEIC is Apple modern image format offering better compression than JPEG with superior quality",
+      "conversions": [
+        {
+          "operation": "HEIC to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIC to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "HEIF Converter": {
+      "description": "HEIF (High Efficiency Image Format) is a container format for HEIC and other efficient codecs",
+      "conversions": [
+        {
+          "operation": "HEIF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "HEIF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ICNS Converter": {
+      "description": "ICNS is Apple icon format used for application icons in macOS",
+      "conversions": [
+        {
+          "operation": "ICNS to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ICO Converter": {
+      "description": "ICO is Microsoft icon format used for application icons and favicons in Windows",
+      "conversions": [
+        {
+          "operation": "ICO to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ICO to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "JFIF Converter": {
+      "description": "JFIF (JPEG File Interchange Format) is a standardized way to store JPEG images",
+      "conversions": [
+        {
+          "operation": "JFIF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JFIF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "JPEG Converter": {
+      "description": "JPEG is a widely-used lossy compression format ideal for photographs and complex images",
+      "conversions": [
+        {
+          "operation": "JPEG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPEG to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "JPG Converter": {
+      "description": "JPG is the same as JPEG format, widely used for web images and digital photography",
+      "conversions": [
+        {
+          "operation": "JPG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "JPG to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "MOS Converter": {
+      "description": "MOS is Leaf raw image format used by Leaf digital camera backs",
+      "conversions": [
+        {
+          "operation": "MOS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MOS to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "MRW Converter": {
+      "description": "MRW is Minolta/Konica Minolta raw image format used by their digital cameras",
+      "conversions": [
+        {
+          "operation": "MRW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MRW to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "NEF Converter": {
+      "description": "NEF (Nikon Electronic Format) is Nikon raw image format used by Nikon digital cameras",
+      "conversions": [
+        {
+          "operation": "NEF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "NEF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ODD Converter": {
+      "description": "ODD is OpenDocument Drawing format used for vector graphics in OpenOffice/LibreOffice",
+      "conversions": [
+        {
+          "operation": "ODD to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODD to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ODG Converter": {
+      "description": "ODG is OpenDocument Graphics format, an open standard for vector graphics",
+      "conversions": [
+        {
+          "operation": "ODG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ODG to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ORF Converter": {
+      "description": "ORF (Olympus Raw Format) is Olympus raw image format used by Olympus digital cameras",
+      "conversions": [
+        {
+          "operation": "ORF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "ORF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PEF Converter": {
+      "description": "PEF (Pentax Electronic Format) is Pentax raw image format used by Pentax digital cameras",
+      "conversions": [
+        {
+          "operation": "PEF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PEF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PNG Converter": {
+      "description": "PNG is a lossless raster image format supporting transparency and wide color support",
+      "conversions": [
+        {
+          "operation": "PNG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to ICNS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PNG to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PPM Converter": {
+      "description": "PPM (Portable Pixmap) is a simple uncompressed image format part of the Netpbm suite",
+      "conversions": [
+        {
+          "operation": "PPM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PPM to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PS Converter": {
+      "description": "PS (PostScript) is a page description language and vector graphics format",
+      "conversions": [
+        {
+          "operation": "PS to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PS to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PSD Converter": {
+      "description": "PSD is Adobe Photoshop native file format supporting layers and advanced features",
+      "conversions": [
+        {
+          "operation": "PSD to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PSD to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "PUB Converter": {
+      "description": "PUB is Microsoft Publisher document format that can contain images and layouts",
+      "conversions": [
+        {
+          "operation": "PUB to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "PUB to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "PUB to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "PUB to PNG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RAF Converter": {
+      "description": "RAF is Fujifilm raw image format used by Fujifilm digital cameras",
+      "conversions": [
+        {
+          "operation": "RAF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RAW Converter": {
+      "description": "RAW refers to unprocessed image data from digital camera sensors before processing",
+      "conversions": [
+        {
+          "operation": "RAW to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAW to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RW2 Converter": {
+      "description": "RW2 is Panasonic raw image format used by Panasonic Lumix digital cameras",
+      "conversions": [
+        {
+          "operation": "RW2 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "RW2 to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TIF Converter": {
+      "description": "TIF is the same as TIFF format, supporting lossless compression and high quality",
+      "conversions": [
+        {
+          "operation": "TIF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TIFF Converter": {
+      "description": "TIFF is a flexible raster image format supporting lossless compression and multiple pages",
+      "conversions": [
+        {
+          "operation": "TIFF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TIFF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WEBP Converter": {
+      "description": "WEBP is Google image format offering superior compression for web use with smaller file sizes",
+      "conversions": [
+        {
+          "operation": "WEBP to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBP to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "X3F Converter": {
+      "description": "X3F is Sigma raw image format used by Sigma digital cameras with Foveon sensors",
+      "conversions": [
+        {
+          "operation": "X3F to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "X3F to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "XCF Converter": {
+      "description": "XCF is GIMP native image format supporting layers, channels, and other advanced features",
+      "conversions": [
+        {
+          "operation": "XCF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XCF to WEBP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "XPS Converter": {
+      "description": "XPS is Microsoft XML Paper Specification format for documents and images",
+      "conversions": [
+        {
+          "operation": "XPS to HTML",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "XPS to SVG",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

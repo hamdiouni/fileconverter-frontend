@@ -1,0 +1,502 @@
+{
+  "Vector Converter": {
+    "AI Converter": {
+      "description": "AI is Adobe Illustrator native vector graphics format supporting advanced design features",
+      "conversions": [
+        {
+          "operation": "AI to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "AI to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CDR Converter": {
+      "description": "CDR is CorelDRAW native vector graphics format used by CorelDRAW design software",
+      "conversions": [
+        {
+          "operation": "CDR to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CDR to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CGM Converter": {
+      "description": "CGM (Computer Graphics Metafile) is an ISO standard for vector graphics interchange",
+      "conversions": [
+        {
+          "operation": "CGM to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "CGM to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "EMF Converter": {
+      "description": "EMF (Enhanced Metafile) is Windows vector graphics format that replaced WMF with better features",
+      "conversions": [
+        {
+          "operation": "EMF to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "EMF to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "SK Converter": {
+      "description": "SK is Sketch vector graphics format used by Sketch design application for macOS",
+      "conversions": [
+        {
+          "operation": "SK to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "SK1 Converter": {
+      "description": "SK1 is sK1 vector graphics format, an open-source alternative to proprietary design software",
+      "conversions": [
+        {
+          "operation": "SK1 to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SK1 to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "SVG Converter": {
+      "description": "SVG (Scalable Vector Graphics) is the web standard for vector graphics with XML-based format",
+      "conversions": [
+        {
+          "operation": "SVG to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to EOT",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to OTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to TTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to WOFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to WOFF2",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVG to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "SVGZ Converter": {
+      "description": "SVGZ is compressed SVG format using gzip compression to reduce file size for web delivery",
+      "conversions": [
+        {
+          "operation": "SVGZ to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to AVIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to BMP",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to GIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to ICO",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to JPG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to ODD",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to PSD",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to TIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to WEBP",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "SVGZ to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "VSD Converter": {
+      "description": "VSD is Microsoft Visio drawing format used for technical diagrams and flowcharts",
+      "conversions": [
+        {
+          "operation": "VSD to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "VSD to WMF",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WMF Converter": {
+      "description": "WMF (Windows Metafile) is an older Windows vector graphics format for simple vector images",
+      "conversions": [
+        {
+          "operation": "WMF to DXF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to PDF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to EPS",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to PNG",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to PS",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to EMF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to SVG",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMF to WMF",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

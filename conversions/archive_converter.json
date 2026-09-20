@@ -1,0 +1,1082 @@
+{
+  "Archive Converter": {
+    "7Z Converter": {
+      "description": "7Z is a compressed archive file format that supports high compression ratios and strong AES-256 encryption",
+      "conversions": [
+        {
+          "operation": "7Z to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "7Z to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "7Z to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "7Z to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "7Z to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ACE Converter": {
+      "description": "ACE is a proprietary data compression archive file format developed by WinAce, known for high compression ratios",
+      "conversions": [
+        {
+          "operation": "ACE to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "ACE to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ACE to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ACE to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "ACE to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "ACE to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ALZ Converter": {
+      "description": "ALZ is a compressed archive format developed by ESTsoft, commonly used in South Korea",
+      "conversions": [
+        {
+          "operation": "ALZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "ALZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ALZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ALZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "ALZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "ALZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ARC Converter": {
+      "description": "ARC is an early archive file format for data compression, popular in the 1980s and early 1990s",
+      "conversions": [
+        {
+          "operation": "ARC to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARC to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARC to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARC to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARC to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARC to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ARJ Converter": {
+      "description": "ARJ is a file archiver developed by Robert K. Jung, known for good compression and archive recovery features",
+      "conversions": [
+        {
+          "operation": "ARJ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARJ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARJ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARJ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARJ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "ARJ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "BZ Converter": {
+      "description": "BZ uses the Bzip compression algorithm, providing better compression than gzip but slower processing",
+      "conversions": [
+        {
+          "operation": "BZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "BZ2 Converter": {
+      "description": "BZ2 is a file compressed with Bzip2 algorithm, offering excellent compression ratios for text files",
+      "conversions": [
+        {
+          "operation": "BZ2 to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ2 to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ2 to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ2 to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ2 to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "BZ2 to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CAB Converter": {
+      "description": "CAB is Microsoft cabinet file format for software distribution and Windows system files",
+      "conversions": [
+        {
+          "operation": "CAB to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAB to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAB to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAB to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAB to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAB to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CPIO Converter": {
+      "description": "CPIO is a file archiver utility and format designed for backing up files and filesystems",
+      "conversions": [
+        {
+          "operation": "CPIO to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "CPIO to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "CPIO to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "CPIO to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "CPIO to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "CPIO to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DEB Converter": {
+      "description": "DEB is the installation package format for Debian-based Linux distributions",
+      "conversions": [
+        {
+          "operation": "DEB to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "DEB to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "DEB to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "DEB to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "DEB to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "DEB to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DMG Converter": {
+      "description": "DMG is Apple disk image format used for software distribution on macOS",
+      "conversions": [
+        {
+          "operation": "DMG to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "DMG to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "DMG to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "DMG to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "DMG to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "DMG to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "GZ Converter": {
+      "description": "GZ is a file compressed with GNU Zip (gzip), widely used in Unix/Linux systems",
+      "conversions": [
+        {
+          "operation": "GZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "GZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "GZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "GZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "GZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "GZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "IMG Converter": {
+      "description": "IMG is a disk image file that contains a copy of a storage device or media",
+      "conversions": [
+        {
+          "operation": "IMG to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "IMG to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "IMG to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "IMG to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "IMG to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "IMG to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ISO Converter": {
+      "description": "ISO is an optical disc image format that contains the complete filesystem of a CD/DVD",
+      "conversions": [
+        {
+          "operation": "ISO to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "ISO to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ISO to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ISO to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "ISO to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "ISO to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "JAR Converter": {
+      "description": "JAR is Java archive format, essentially a ZIP file containing Java classes and resources",
+      "conversions": [
+        {
+          "operation": "JAR to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "JAR to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "JAR to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "JAR to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "JAR to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "JAR to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LHA Converter": {
+      "description": "LHA is an archive format developed for the LHArc archiver, popular in Japan and on Amiga systems",
+      "conversions": [
+        {
+          "operation": "LHA to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "LHA to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LHA to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LHA to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "LHA to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "LHA to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LZ Converter": {
+      "description": "LZ files are compressed using Lempel-Ziv compression algorithm variants",
+      "conversions": [
+        {
+          "operation": "LZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LZMA Converter": {
+      "description": "LZMA provides high compression ratios and fast decompression, used by 7-Zip and XZ formats",
+      "conversions": [
+        {
+          "operation": "LZMA to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZMA to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZMA to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZMA to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZMA to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZMA to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "LZO Converter": {
+      "description": "LZO is a compression algorithm that focuses on decompression speed over compression ratio",
+      "conversions": [
+        {
+          "operation": "LZO to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZO to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZO to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZO to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZO to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "LZO to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RAR Converter": {
+      "description": "RAR is a proprietary archive format with strong compression and error recovery capabilities",
+      "conversions": [
+        {
+          "operation": "RAR to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAR to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAR to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAR to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "RAR to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RPM Converter": {
+      "description": "RPM is the package manager format for Red Hat-based Linux distributions",
+      "conversions": [
+        {
+          "operation": "RPM to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "RPM to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "RPM to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "RPM to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "RPM to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "RPM to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "RZ Converter": {
+      "description": "RZ files are compressed using the rzip algorithm for large file compression",
+      "conversions": [
+        {
+          "operation": "RZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "RZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "RZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "RZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "RZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "RZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR Converter": {
+      "description": "TAR is an archive format that stores multiple files as a single file, commonly used in Unix systems",
+      "conversions": [
+        {
+          "operation": "TAR to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.7Z Converter": {
+      "description": "TAR.7Z combines TAR archiving with 7-Zip compression for high compression ratios",
+      "conversions": [
+        {
+          "operation": "TAR.7Z to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.7Z to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.7Z to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.7Z to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.7Z to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.7Z to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.BZ Converter": {
+      "description": "TAR.BZ combines TAR archiving with Bzip compression for good compression ratios",
+      "conversions": [
+        {
+          "operation": "TAR.BZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.BZ2 Converter": {
+      "description": "TAR.BZ2 combines TAR archiving with Bzip2 compression, popular in Linux distributions",
+      "conversions": [
+        {
+          "operation": "TAR.BZ2 to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ2 to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ2 to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ2 to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.BZ2 to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.GZ Converter": {
+      "description": "TAR.GZ combines TAR archiving with Gzip compression, the most common Unix archive format",
+      "conversions": [
+        {
+          "operation": "TAR.GZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.GZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.GZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.GZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.GZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.LZO Converter": {
+      "description": "TAR.LZO combines TAR archiving with LZO compression for fast compression/decompression",
+      "conversions": [
+        {
+          "operation": "TAR.LZO to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.LZO to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.LZO to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.LZO to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.LZO to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.LZO to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.XZ Converter": {
+      "description": "TAR.XZ combines TAR archiving with XZ compression for excellent compression ratios",
+      "conversions": [
+        {
+          "operation": "TAR.XZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.XZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.XZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.XZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.XZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.XZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TAR.Z Converter": {
+      "description": "TAR.Z combines TAR archiving with compress utility compression, an older Unix format",
+      "conversions": [
+        {
+          "operation": "TAR.Z to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.Z to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.Z to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.Z to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.Z to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TAR.Z to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TBZ Converter": {
+      "description": "TBZ is a shorthand for TAR.BZ files, combining TAR and Bzip compression",
+      "conversions": [
+        {
+          "operation": "TBZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TBZ2 Converter": {
+      "description": "TBZ2 is a shorthand for TAR.BZ2 files, combining TAR and Bzip2 compression",
+      "conversions": [
+        {
+          "operation": "TBZ2 to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ2 to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ2 to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ2 to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ2 to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TBZ2 to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TGZ Converter": {
+      "description": "TGZ is a shorthand for TAR.GZ files, the most common compressed archive format in Unix",
+      "conversions": [
+        {
+          "operation": "TGZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TGZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TGZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TGZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TGZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TGZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TZ Converter": {
+      "description": "TZ files use the compress utility compression algorithm, an older Unix compression format",
+      "conversions": [
+        {
+          "operation": "TZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TZO Converter": {
+      "description": "TZO combines TAR archiving with LZO compression for fast processing",
+      "conversions": [
+        {
+          "operation": "TZO to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZO to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZO to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZO to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZO to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "TZO to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "XZ Converter": {
+      "description": "XZ is a compression format using LZMA2 algorithm, offering excellent compression ratios",
+      "conversions": [
+        {
+          "operation": "XZ to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "XZ to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "XZ to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "XZ to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "XZ to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "XZ to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "Z Converter": {
+      "description": "Z files are compressed using the original Unix compress utility with LZW algorithm",
+      "conversions": [
+        {
+          "operation": "Z to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "Z to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "Z to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "Z to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "Z to TAR.GZ",
+          "progress": "not started"
+        },
+        {
+          "operation": "Z to ZIP",
+          "progress": "not started"
+        }
+      ]
+    },
+    "ZIP Converter": {
+      "description": "ZIP is the most widely used archive format, supporting compression and password protection",
+      "conversions": [
+        {
+          "operation": "ZIP to 7Z",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZIP to RAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZIP to TAR",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZIP to TAR.BZ2",
+          "progress": "not started"
+        },
+        {
+          "operation": "ZIP to TAR.GZ",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

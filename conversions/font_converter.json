@@ -1,0 +1,129 @@
+{
+  "Font Converter": {
+    "EOT Converter": {
+      "description": "EOT (Embedded OpenType) is Microsoft web font format designed for embedding fonts in web pages",
+      "conversions": [
+        {
+          "operation": "EOT to OTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EOT to TTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EOT to WOFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "EOT to WOFF2",
+          "progress": "not started"
+        },
+        {
+          "operation": "EOT to SVG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "OTF Converter": {
+      "description": "OTF (OpenType Font) is a scalable font format developed by Adobe and Microsoft with advanced typography features",
+      "conversions": [
+        {
+          "operation": "OTF to EOT",
+          "progress": "not started"
+        },
+        {
+          "operation": "OTF to TTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "OTF to WOFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "OTF to WOFF2",
+          "progress": "not started"
+        },
+        {
+          "operation": "OTF to SVG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "TTF Converter": {
+      "description": "TTF (TrueType Font) is a popular font format developed by Apple and Microsoft for outline fonts",
+      "conversions": [
+        {
+          "operation": "TTF to EOT",
+          "progress": "not started"
+        },
+        {
+          "operation": "TTF to OTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TTF to WOFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "TTF to WOFF2",
+          "progress": "not started"
+        },
+        {
+          "operation": "TTF to SVG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WOFF Converter": {
+      "description": "WOFF (Web Open Font Format) is a compressed font format designed specifically for web use",
+      "conversions": [
+        {
+          "operation": "WOFF to EOT",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF to OTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF to TTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF to WOFF2",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF to SVG",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WOFF2 Converter": {
+      "description": "WOFF2 is the next generation of WOFF with better compression and improved performance for web fonts",
+      "conversions": [
+        {
+          "operation": "WOFF2 to EOT",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF2 to OTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF2 to TTF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF2 to WOFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WOFF2 to SVG",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}

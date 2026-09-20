@@ -1,0 +1,642 @@
+{
+  "Audio Converter": {
+    "AAC Converter": {
+      "description": "AAC (Advanced Audio Coding) is a lossy digital audio compression format designed to be the successor to MP3",
+      "conversions": [
+        {
+          "operation": "AAC to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AAC to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AAC to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AAC to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AAC to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AAC to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AAC to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AC3 Converter": {
+      "description": "AC3 (Dolby Digital) is a surround sound audio format commonly used in DVDs and digital broadcasting",
+      "conversions": [
+        {
+          "operation": "AC3 to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to AC3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AC3 to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AIF Converter": {
+      "description": "AIF (Audio Interchange File Format) is an uncompressed audio format developed by Apple",
+      "conversions": [
+        {
+          "operation": "AIF to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to AIF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIF to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AIFC Converter": {
+      "description": "AIFC is a compressed variant of AIF format that supports various audio compression algorithms",
+      "conversions": [
+        {
+          "operation": "AIFC to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to AIFC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFC to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AIFF Converter": {
+      "description": "AIFF (Audio Interchange File Format) is an uncompressed audio format similar to WAV but developed by Apple",
+      "conversions": [
+        {
+          "operation": "AIFF to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFF to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFF to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFF to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFF to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFF to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AIFF to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AMR Converter": {
+      "description": "AMR (Adaptive Multi-Rate) is a speech audio format optimized for speech coding in mobile phones",
+      "conversions": [
+        {
+          "operation": "AMR to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to AMR",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AMR to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "AU Converter": {
+      "description": "AU is a simple audio file format developed by Sun Microsystems for Unix and Java platforms",
+      "conversions": [
+        {
+          "operation": "AU to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to AU",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "AU to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "CAF Converter": {
+      "description": "CAF (Core Audio Format) is Apple flexible audio container format supporting multiple audio formats",
+      "conversions": [
+        {
+          "operation": "CAF to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to CAF",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "CAF to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "DSS Converter": {
+      "description": "DSS (Digital Speech Standard) is a compressed audio format designed for digital voice recorders",
+      "conversions": [
+        {
+          "operation": "DSS to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to DSS",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "DSS to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "FLAC Converter": {
+      "description": "FLAC (Free Lossless Audio Codec) provides lossless audio compression with perfect audio quality",
+      "conversions": [
+        {
+          "operation": "FLAC to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "FLAC to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "FLAC to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "FLAC to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "FLAC to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "FLAC to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "FLAC to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "M4A Converter": {
+      "description": "M4A is an audio-only MPEG-4 container format, often used for iTunes and Apple devices",
+      "conversions": [
+        {
+          "operation": "M4A to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4A to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4A to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4A to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4A to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4A to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4A to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "M4B Converter": {
+      "description": "M4B is an MPEG-4 audio format specifically designed for audiobooks with chapter markers",
+      "conversions": [
+        {
+          "operation": "M4B to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to M4B",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "M4B to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "MP3 Converter": {
+      "description": "MP3 (MPEG-1 Audio Layer III) is the most popular lossy audio compression format worldwide",
+      "conversions": [
+        {
+          "operation": "MP3 to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "MP3 to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "MP3 to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "MP3 to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "MP3 to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "MP3 to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "MP3 to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "OGA Converter": {
+      "description": "OGA (Ogg Audio) is an open-source audio format that provides efficient compression",
+      "conversions": [
+        {
+          "operation": "OGA to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to OGA",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "OGA to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "VOC Converter": {
+      "description": "VOC is an audio file format originally used by Creative Technology Sound Blaster sound cards",
+      "conversions": [
+        {
+          "operation": "VOC to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to VOC",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "VOC to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WAV Converter": {
+      "description": "WAV (Waveform Audio File Format) is an uncompressed audio format providing high quality audio",
+      "conversions": [
+        {
+          "operation": "WAV to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WAV to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WAV to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WAV to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "WAV to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "WAV to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "WAV to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WEBA Converter": {
+      "description": "WEBA is the audio-only version of WebM format, designed for web streaming with efficient compression",
+      "conversions": [
+        {
+          "operation": "WEBA to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to WEBA",
+          "progress": "not started"
+        },
+        {
+          "operation": "WEBA to WMA",
+          "progress": "not started"
+        }
+      ]
+    },
+    "WMA Converter": {
+      "description": "WMA (Windows Media Audio) is Microsoft proprietary audio format with good compression and quality",
+      "conversions": [
+        {
+          "operation": "WMA to AAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMA to AIFF",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMA to FLAC",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMA to M4A",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMA to MP3",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMA to WAV",
+          "progress": "not started"
+        },
+        {
+          "operation": "WMA to WMA",
+          "progress": "not started"
+        }
+      ]
+    }
+  }
+}
