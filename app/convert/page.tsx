@@ -29,6 +29,7 @@ import {
 
 import { uploads, conversions, ApiClientError, type ConversionJob } from '@/lib/api-client';
 import { getCategoryData, getAllCategoryIds } from '@/lib/conversions';
+import { canConvertClientSide, convertClientSide } from '@/lib/client-converter';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -44,6 +45,8 @@ interface ConversionState {
   uploadPct: number;
   job: ConversionJob | null;
   downloadUrl: string | null;
+  downloadFilename?: string;
+  isClientSide?: boolean;
   error: string | null;
 }
 
@@ -240,12 +243,21 @@ function StatusCard({ state }: { state: ConversionState }) {
             <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-900">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
               <div className="flex-1 text-sm">
-                <p className="font-medium text-green-800 dark:text-green-300">File ready</p>
+                <div className="flex items-center gap-2">
+                  <p className="font-medium text-green-800 dark:text-green-300">File ready</p>
+                  {state.isClientSide && (
+                    <Badge variant="secondary" className="text-[10px] px-1.5 py-0 bg-green-200/80 dark:bg-green-900/80 text-green-800 dark:text-green-200 font-medium">
+                      ⚡ Instant Browser Conversion
+                    </Badge>
+                  )}
+                </div>
                 {job && <p className="text-green-700 dark:text-green-400">{job.sourceFormat.toUpperCase()} → {job.targetFormat.toUpperCase()}</p>}
               </div>
             </div>
             <Button className="w-full gap-2" asChild>
-              <a href={downloadUrl} download><Download className="h-4 w-4" /> Download converted file</a>
+              <a href={downloadUrl} download={state.downloadFilename || `converted.${job?.targetFormat || 'file'}`}>
+                <Download className="h-4 w-4" /> Download converted file
+              </a>
             </Button>
           </div>
         )}
@@ -295,7 +307,11 @@ function ConvertContent() {
     if (!file || !targetFormat) return;
 
     setState({ stage: 'uploading', uploadPct: 0, job: null, downloadUrl: null, error: null });
-    const toastId = toast.loading('Uploading file…');
+    const toastId = toast.loading('Starting conversion…');
+
+    const sourceExt = extOf(file.name).toLowerCase();
+    const targetExt = targetFormat.toLowerCase();
+    const canLocal = canConvertClientSide(sourceExt, targetExt);
 
     try {
       // 1 — request presigned URL
@@ -317,7 +333,7 @@ function ConvertContent() {
       // 4 — submit conversion with options
       const { jobId } = await conversions.submit({
         sourceFileId: uploadId,
-        targetFormat: targetFormat.toLowerCase(),
+        targetFormat: targetExt,
         options: {
           quality: options.quality,
           preserveMetadata: options.preserveMetadata,
@@ -326,22 +342,74 @@ function ConvertContent() {
 
       // 5 — poll
       const finalJob = await conversions.poll(jobId, {
-        intervalMs: 2_000,
+        intervalMs: 1_500,
         timeoutMs: 300_000,
         onProgress: (j) => setState((s) => ({ ...s, job: j })),
       });
 
       if (finalJob.status === 'completed' && finalJob.resultFileId) {
         const { url } = await uploads.getDownloadUrl(finalJob.resultFileId);
-        setState({ stage: 'completed', uploadPct: 100, job: finalJob, downloadUrl: url, error: null });
-        toast.success(`Converted to ${targetFormat} — ready to download!`, { id: toastId });
-      } else {
-        const msg = finalJob.errorMessage ?? 'Conversion failed. Please try again.';
-        setState({ stage: 'error', uploadPct: 0, job: finalJob, downloadUrl: null, error: msg });
-        toast.error(msg, { id: toastId });
+        const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+        setState({
+          stage: 'completed',
+          uploadPct: 100,
+          job: finalJob,
+          downloadUrl: url,
+          downloadFilename: `${baseName}.${targetExt}`,
+          error: null,
+        });
+        toast.success(`Converted to ${targetFormat.toUpperCase()} — ready to download!`, { id: toastId });
+        return;
       }
-    } catch (err) {
-      const msg = err instanceof ApiClientError ? err.message : (err as Error).message ?? 'Unexpected error.';
+      throw new Error(finalJob.errorMessage ?? 'Conversion failed on server.');
+    } catch (backendErr: any) {
+      console.warn('Backend conversion unavailable or failed, checking client-side converter:', backendErr);
+
+      // Fallback: If this format can be converted client-side directly in the browser
+      if (canLocal) {
+        try {
+          toast.loading('Processing instant in-browser conversion…', { id: toastId });
+          setState((s) => ({ ...s, stage: 'processing', uploadPct: 100 }));
+
+          // Short visual transition
+          await new Promise((r) => setTimeout(r, 400));
+
+          const result = await convertClientSide(file, targetExt, {
+            quality: options.quality,
+            preserveMetadata: options.preserveMetadata,
+          });
+
+          setState({
+            stage: 'completed',
+            uploadPct: 100,
+            job: {
+              id: 'local-' + Math.random().toString(36).slice(2, 9),
+              sourceFormat: sourceExt,
+              targetFormat: targetExt,
+              status: 'completed',
+              progress: 100,
+            } as any,
+            downloadUrl: result.url,
+            downloadFilename: result.filename,
+            isClientSide: true,
+            error: null,
+          });
+
+          toast.success(`Converted to ${targetFormat.toUpperCase()} instantly in browser!`, { id: toastId });
+          return;
+        } catch (localErr: any) {
+          console.error('Client-side conversion error:', localErr);
+          const msg = localErr.message || 'Client conversion failed.';
+          setState({ stage: 'error', uploadPct: 0, job: null, downloadUrl: null, error: msg });
+          toast.error(msg, { id: toastId });
+          return;
+        }
+      }
+
+      // If cannot convert client-side and backend failed
+      const msg = backendErr instanceof ApiClientError
+        ? backendErr.message
+        : backendErr?.message ?? 'Conversion server unavailable. Please deploy the backend or convert a standard format.';
       setState({ stage: 'error', uploadPct: 0, job: null, downloadUrl: null, error: msg });
       toast.error(msg, { id: toastId });
     }
