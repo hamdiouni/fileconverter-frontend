@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Nested repos / project files
+/backend
+/.bolt
+/.kiro
+/project_overview.md
+/prompt.txt
