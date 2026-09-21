@@ -38,6 +38,7 @@ next-env.d.ts
 # Nested repos / project files
 /backend
 /.bolt
+scratch/
 /.kiro
 /project_overview.md
 /prompt.txt

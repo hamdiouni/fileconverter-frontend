@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Webhook, Plus, Trash2, Loader2, ChevronLeft,
-  CheckCircle, XCircle, Clock, Info,
+  CheckCircle, XCircle, Clock, Info, AlertCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,6 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useAuthStore } from '@/lib/auth-store';
+import { webhooksApi, ApiClientError, type WebhookEndpoint } from '@/lib/api-client';
 import { toast } from 'sonner';
 import Link from 'next/link';
 
@@ -29,17 +30,6 @@ const EVENTS = [
   { id: 'upload.infected',      label: 'Upload infected',      desc: 'When a file is flagged by virus scan' },
 ];
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-interface WebhookEntry {
-  id: string;
-  url: string;
-  events: string[];
-  active: boolean;
-  createdAt: string;
-  lastDeliveryAt: string | null;
-  lastStatus: 'success' | 'failed' | null;
-}
-
 const schema = z.object({
   url: z.string().url('Enter a valid HTTPS URL').startsWith('https://', 'URL must use HTTPS'),
 });
@@ -48,20 +38,28 @@ type FormValues = z.infer<typeof schema>;
 export default function WebhooksPage() {
   const router = useRouter();
   const { user, init } = useAuthStore();
-  const [hooks, setHooks]       = useState<WebhookEntry[]>([]);
+  const [hooks, setHooks]       = useState<WebhookEndpoint[]>([]);
   const [loading, setLoading]   = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [showCreate, setShowCreate] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const [selectedEvents, setSelectedEvents] = useState<string[]>(['conversion.completed', 'conversion.failed']);
 
   const { register, handleSubmit, reset, formState: { errors } } =
     useForm<FormValues>({ resolver: zodResolver(schema) });
 
   useEffect(() => { init(); }, [init]);
+
   useEffect(() => {
     if (!user) { router.replace('/auth/login?redirect=/dashboard/webhooks'); return; }
-    // No webhook list endpoint exists yet — show empty state
-    setLoading(false);
+    webhooksApi.list()
+      .then(setHooks)
+      .catch((err) => {
+        const msg = err instanceof ApiClientError ? err.message : 'Failed to load webhooks';
+        setLoadError(msg);
+      })
+      .finally(() => setLoading(false));
   }, [user, router]);
 
   const handleCreate = async (values: FormValues) => {
@@ -70,28 +68,32 @@ export default function WebhooksPage() {
       return;
     }
     setCreating(true);
-    await new Promise((r) => setTimeout(r, 600)); // simulate API
-    const newHook: WebhookEntry = {
-      id: `wh_${Date.now()}`,
-      url: values.url,
-      events: selectedEvents,
-      active: true,
-      createdAt: new Date().toISOString(),
-      lastDeliveryAt: null,
-      lastStatus: null,
-    };
-    setHooks((prev) => [newHook, ...prev]);
-    reset();
-    setSelectedEvents(['conversion.completed', 'conversion.failed']);
-    setShowCreate(false);
-    setCreating(false);
-    toast.success('Webhook registered');
+    try {
+      const newHook = await webhooksApi.create(values.url, selectedEvents);
+      setHooks((prev) => [newHook, ...prev]);
+      reset();
+      setSelectedEvents(['conversion.completed', 'conversion.failed']);
+      setShowCreate(false);
+      toast.success('Webhook endpoint registered');
+    } catch (err) {
+      toast.error(err instanceof ApiClientError ? err.message : 'Failed to register webhook');
+    } finally {
+      setCreating(false);
+    }
   };
 
-  const handleDelete = (id: string) => {
-    if (!confirm('Delete this webhook?')) return;
-    setHooks((prev) => prev.filter((h) => h.id !== id));
-    toast.success('Webhook deleted');
+  const handleDelete = async (id: string) => {
+    if (!confirm('Delete this webhook endpoint? It will stop receiving events immediately.')) return;
+    setDeleting(id);
+    try {
+      await webhooksApi.delete(id);
+      setHooks((prev) => prev.filter((h) => h.id !== id));
+      toast.success('Webhook deleted');
+    } catch (err) {
+      toast.error(err instanceof ApiClientError ? err.message : 'Failed to delete webhook');
+    } finally {
+      setDeleting(null);
+    }
   };
 
   const toggleEvent = (id: string) =>
@@ -125,6 +127,14 @@ export default function WebhooksPage() {
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-3xl space-y-6">
+        {/* Load error */}
+        {loadError && (
+          <div className="flex items-center gap-3 bg-destructive/10 border border-destructive/20 rounded-lg px-4 py-3 text-sm text-destructive">
+            <AlertCircle className="h-4 w-4 flex-shrink-0" />
+            <span>{loadError}</span>
+          </div>
+        )}
+
         {/* Info */}
         <div className="flex gap-3 bg-muted/40 rounded-lg px-4 py-3 text-xs text-muted-foreground">
           <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
@@ -136,7 +146,7 @@ export default function WebhooksPage() {
         </div>
 
         {/* List */}
-        {hooks.length === 0 ? (
+        {hooks.length === 0 && !loadError ? (
           <Card>
             <CardContent className="py-16 text-center">
               <Webhook className="h-10 w-10 text-muted-foreground/30 mx-auto mb-4" />
@@ -179,9 +189,12 @@ export default function WebhooksPage() {
                       variant="ghost"
                       size="icon"
                       className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
+                      disabled={deleting === hook.id}
                       onClick={() => handleDelete(hook.id)}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      {deleting === hook.id
+                        ? <Loader2 className="h-4 w-4 animate-spin" />
+                        : <Trash2 className="h-4 w-4" />}
                     </Button>
                   </div>
                   <div className="flex flex-wrap gap-1.5">

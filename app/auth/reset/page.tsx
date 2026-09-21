@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Zap, ArrowLeft, Mail, Loader2, CheckCircle } from 'lucide-react';
+import { Zap, ArrowLeft, Mail, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { auth, ApiClientError } from '@/lib/api-client';
 
 const schema = z.object({
   email: z.string().email('Enter a valid email address'),
@@ -19,16 +20,31 @@ type FormValues = z.infer<typeof schema>;
 export default function ResetPage() {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const { register, handleSubmit, getValues, formState: { errors } } =
     useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
-    // Simulate API call — in production this calls POST /auth/reset-password
-    await new Promise((r) => setTimeout(r, 1000));
-    setSent(true);
-    setSubmitting(false);
+    setServerError(null);
+    try {
+      await auth.requestPasswordReset(values.email);
+      setSent(true);
+    } catch (err) {
+      // Show success even on 404 to avoid email enumeration
+      if (err instanceof ApiClientError && err.status === 404) {
+        setSent(true);
+      } else {
+        setServerError(
+          err instanceof ApiClientError
+            ? err.message
+            : 'Something went wrong. Please try again.',
+        );
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -50,8 +66,8 @@ export default function ResetPage() {
                 </div>
                 <CardTitle>Check your inbox</CardTitle>
                 <CardDescription>
-                  We sent a reset link to <strong>{getValues('email')}</strong>.
-                  Check your email and follow the instructions.
+                  If an account exists for <strong>{getValues('email')}</strong>, we sent
+                  a password reset link. Check your email and follow the instructions.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -59,7 +75,7 @@ export default function ResetPage() {
                   Didn&apos;t receive it? Check your spam folder or{' '}
                   <button
                     className="text-primary hover:underline"
-                    onClick={() => setSent(false)}
+                    onClick={() => { setSent(false); setServerError(null); }}
                   >
                     try again
                   </button>.
@@ -81,6 +97,13 @@ export default function ResetPage() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+                  {serverError && (
+                    <div className="flex gap-3 bg-destructive/10 border border-destructive/30 text-destructive text-sm px-4 py-3 rounded-lg">
+                      <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span>{serverError}</span>
+                    </div>
+                  )}
+
                   <div className="space-y-1.5">
                     <Label htmlFor="email">Email address</Label>
                     <Input

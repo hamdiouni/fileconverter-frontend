@@ -2,7 +2,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'documents',
     name: 'Documents',
-    count: 199,
+    count: 230,
     icon: 'FileText',
     description: 'Word, PDF, TXT, HTML, and more',
     subcategories: [
@@ -23,7 +23,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'images',
     name: 'Images',
-    count: 199,
+    count: 515,
     icon: 'Image',
     description: 'JPG, PNG, SVG, WEBP, and more',
     subcategories: [
@@ -44,7 +44,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'audio',
     name: 'Audio',
-    count: 199,
+    count: 137,
     icon: 'Music',
     description: 'MP3, WAV, FLAC, OGG, and more',
     subcategories: [
@@ -65,7 +65,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'video',
     name: 'Video',
-    count: 199,
+    count: 417,
     icon: 'Video',
     description: 'MP4, AVI, MOV, WEBM, and more',
     subcategories: [
@@ -86,7 +86,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'archives',
     name: 'Archives',
-    count: 199,
+    count: 222,
     icon: 'Archive',
     description: 'ZIP, RAR, 7Z, TAR, and more',
     subcategories: [
@@ -107,7 +107,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'ebooks',
     name: 'Ebooks',
-    count: 199,
+    count: 189,
     icon: 'Book',
     description: 'EPUB, MOBI, PDF, AZW, and more',
     subcategories: [
@@ -128,7 +128,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'presentations',
     name: 'Presentations',
-    count: 199,
+    count: 96,
     icon: 'Presentation',
     description: 'PPT, KEY, ODP, and more',
     subcategories: [
@@ -149,7 +149,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'spreadsheets',
     name: 'Spreadsheets',
-    count: 199,
+    count: 55,
     icon: 'Table',
     description: 'XLS, CSV, NUMBERS, and more',
     subcategories: [
@@ -168,9 +168,30 @@ export const CONVERSION_CATEGORIES = [
     ]
   },
   {
+    id: 'vector',
+    name: 'Vector',
+    count: 112,
+    icon: 'PenTool',
+    description: 'SVG, AI, EPS, CDR, and more',
+    subcategories: [
+      {
+        name: 'Web',
+        formats: ['SVG', 'SVGZ']
+      },
+      {
+        name: 'Print',
+        formats: ['EPS', 'AI', 'PDF']
+      },
+      {
+        name: 'Design',
+        formats: ['CDR', 'WMF', 'EMF']
+      }
+    ]
+  },
+  {
     id: 'cad',
     name: 'CAD Files',
-    count: 199,
+    count: 23,
     icon: 'Compass',
     description: 'DWG, DXF, PDF export, and more',
     subcategories: [
@@ -187,7 +208,7 @@ export const CONVERSION_CATEGORIES = [
   {
     id: 'fonts',
     name: 'Fonts',
-    count: 199,
+    count: 25,
     icon: 'Type',
     description: 'TTF, WOFF, OTF, and more',
     subcategories: [

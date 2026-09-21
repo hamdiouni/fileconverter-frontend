@@ -29,10 +29,11 @@ type ProfileValues = z.infer<typeof profileSchema>;
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { user, init } = useAuthStore();
+  const { user, init, logout } = useAuthStore();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving]   = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const { register, handleSubmit, reset, formState: { errors, isDirty } } =
     useForm<ProfileValues>({ resolver: zodResolver(profileSchema) });
@@ -180,18 +181,29 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             <p className="text-sm text-muted-foreground">
-              Deleting your account permanently removes all your data. This cannot be undone.
+              Deleting your account permanently removes all your data, files, and API keys.
+              This action cannot be undone.
             </p>
             <Button
               variant="outline"
               className="border-destructive/30 text-destructive hover:bg-destructive/10 gap-2"
-              onClick={() => {
-                if (confirm('Are you sure you want to delete your account? This cannot be undone.')) {
-                  toast.error('Account deletion is disabled in this demo.');
+              disabled={deleting}
+              onClick={async () => {
+                if (!confirm('Are you absolutely sure? This will permanently delete your account and all associated data. This cannot be undone.')) return;
+                setDeleting(true);
+                try {
+                  await users.deleteAccount();
+                  logout();
+                  toast.success('Account deleted. Goodbye!');
+                  router.replace('/');
+                } catch (err) {
+                  toast.error((err as ApiClientError).message ?? 'Failed to delete account. Please try again.');
+                  setDeleting(false);
                 }
               }}
             >
-              <Trash2 className="h-4 w-4" /> Delete my account
+              {deleting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+              Delete my account
             </Button>
           </CardContent>
         </Card>

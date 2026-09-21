@@ -261,12 +261,12 @@ export function Navbar() {
               </Link>
               <div className="px-4 pt-4 border-t space-y-2">
                 <Button variant="outline" className="w-full" size="sm" asChild>
-                  <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
                     Sign In
                   </Link>
                 </Button>
                 <Button className="w-full" size="sm" asChild>
-                  <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
                     Get Started
                   </Link>
                 </Button>

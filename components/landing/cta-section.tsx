@@ -42,7 +42,7 @@ export function CTASection() {
                 className="text-lg px-8 py-6 h-auto bg-white text-primary hover:bg-white/90"
                 asChild
               >
-                <Link href="/signup">
+                <Link href="/auth/signup">
                   Start Free Trial
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -61,7 +61,7 @@ export function CTASection() {
             
             <div className="mt-8 text-white/80">
               Already have an account?{' '}
-              <Link href="/login" className="underline hover:no-underline font-medium">
+              <Link href="/auth/login" className="underline hover:no-underline font-medium">
                 Sign in here
               </Link>
             </div>

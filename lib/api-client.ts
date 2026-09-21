@@ -275,6 +275,10 @@ export const auth = {
     return stored.expiresAt > Date.now() + 60_000;
   },
 
+  async requestPasswordReset(email: string): Promise<void> {
+    return request('POST', '/auth/reset-password', { body: { email }, token: null });
+  },
+
   async listApiKeys(): Promise<ApiKey[]> {
     return request<ApiKey[]>('GET', '/auth/api-keys');
   },
@@ -306,6 +310,36 @@ export const users = {
   async getUsage(): Promise<UsageStats> {
     return request<UsageStats>('GET', '/users/me/usage');
   },
+
+  async deleteAccount(): Promise<void> {
+    return request('DELETE', '/users/me');
+  },
+};
+
+// ─── Webhook endpoints ────────────────────────────────────────────────────────
+
+export interface WebhookEndpoint {
+  id: string;
+  url: string;
+  events: string[];
+  active: boolean;
+  createdAt: string;
+  lastDeliveryAt: string | null;
+  lastStatus: 'success' | 'failed' | null;
+}
+
+export const webhooksApi = {
+  async list(): Promise<WebhookEndpoint[]> {
+    return request<WebhookEndpoint[]>('GET', '/webhooks');
+  },
+
+  async create(url: string, events: string[]): Promise<WebhookEndpoint> {
+    return request<WebhookEndpoint>('POST', '/webhooks', { body: { url, events } });
+  },
+
+  async delete(id: string): Promise<void> {
+    return request('DELETE', `/webhooks/${id}`);
+  },
 };
 
 // ─── Upload endpoints ─────────────────────────────────────────────────────────
@@ -320,37 +354,56 @@ export const uploads = {
     size: number,
   ): Promise<UploadResponse> {
     return request<UploadResponse>('POST', '/uploads', {
-      body: { filename, contentType, size },
+      body: { filename, contentType, fileSize: size, size },
     });
   },
 
   /**
    * Step 2 — upload directly to S3/MinIO using the presigned URL.
-   * Returns the HTTP response (caller checks .ok).
+   * Supports both standard S3 PUT presigned URLs and POST policy uploads.
    */
   async uploadToStorage(
     presignedUrl: string,
     file: File,
-    fields: Record<string, string>,
+    fields?: Record<string, string>,
     onProgress?: (pct: number) => void,
   ): Promise<void> {
     return new Promise((resolve, reject) => {
-      const formData = new FormData();
-      Object.entries(fields).forEach(([k, v]) => formData.append(k, v));
-      formData.append('file', file);
-
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', presignedUrl);
 
-      if (onProgress) {
-        xhr.upload.onprogress = (e) => {
-          if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100));
-        };
+      if (fields && Object.keys(fields).length > 0) {
+        // Multipart POST upload
+        const formData = new FormData();
+        Object.entries(fields).forEach(([k, v]) => formData.append(k, v));
+        formData.append('file', file);
+        xhr.open('POST', presignedUrl);
+
+        if (onProgress) {
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100));
+          };
+        }
+
+        xhr.onload = () => (xhr.status < 300 ? resolve() : reject(new Error(`Upload failed: ${xhr.status}`)));
+        xhr.onerror = () => reject(new Error('Network error during upload'));
+        xhr.send(formData);
+      } else {
+        // Standard S3 PutObject presigned URL upload (PUT)
+        xhr.open('PUT', presignedUrl);
+        if (file.type) {
+          xhr.setRequestHeader('Content-Type', file.type);
+        }
+
+        if (onProgress) {
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100));
+          };
+        }
+
+        xhr.onload = () => (xhr.status < 300 ? resolve() : reject(new Error(`Upload failed with status ${xhr.status}`));
+        xhr.onerror = () => reject(new Error('Network error during upload'));
+        xhr.send(file);
       }
-
-      xhr.onload = () => (xhr.status < 300 ? resolve() : reject(new Error(`Upload failed: ${xhr.status}`)));
-      xhr.onerror = () => reject(new Error('Network error during upload'));
-      xhr.send(formData);
     });
   },
 
