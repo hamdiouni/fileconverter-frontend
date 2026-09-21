@@ -27,7 +27,7 @@ export function Testimonials() {
                   <Quote className="h-8 w-8 text-primary/20" />
                 </div>
                 <blockquote className="text-lg leading-relaxed mb-6">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
                 <div>
                   <div className="font-semibold">{testimonial.author}</div>

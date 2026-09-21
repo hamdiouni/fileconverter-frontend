@@ -261,7 +261,7 @@ export function PopularConversions() {
                 </h3>
               </div>
               <p className="text-muted-foreground mb-6">
-                Can't find the conversion you need? Our platform supports 2,000+ formats. 
+                Can&apos;t find the conversion you need? Our platform supports 2,000+ formats. 
                 Use the search above or browse all categories to find your perfect tool.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

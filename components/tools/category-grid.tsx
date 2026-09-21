@@ -193,7 +193,7 @@ export function CategoryGrid() {
           <Card className="inline-block p-8 bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
             <CardContent className="p-0">
               <h3 className="text-2xl font-bold mb-4">
-                Can't find what you're looking for?
+                Can&apos;t find what you&apos;re looking for?
               </h3>
               <p className="text-muted-foreground mb-6">
                 Our platform supports 2,000+ conversion types. Contact us if you need a specific format or have custom requirements.

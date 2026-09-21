@@ -81,7 +81,7 @@ export function ComparisonTable() {
             Feature Comparison
           </h2>
           <p className="text-lg text-muted-foreground">
-            See exactly what's included in each plan
+            See exactly what&apos;s included in each plan
           </p>
         </div>
 

@@ -28,7 +28,7 @@ export function ContactSales() {
             <CardHeader className="pb-6">
               <CardTitle className="text-2xl">Get in Touch</CardTitle>
               <CardDescription>
-                Tell us about your needs and we'll create a custom solution for you.
+                Tell us about your needs and we&apos;ll create a custom solution for you.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">

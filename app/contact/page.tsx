@@ -27,7 +27,7 @@ export default function ContactPage() {
       <section className="py-20 border-b bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-muted-foreground text-lg">We'd love to hear from you. Send us a message and we'll respond promptly.</p>
+          <p className="text-muted-foreground text-lg">We&apos;d love to hear from you. Send us a message and we&apos;ll respond promptly.</p>
         </div>
       </section>
 

@@ -144,7 +144,7 @@ export function AuthenticationDocs() {
                   <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
                     <li>Sign up for a FileConverter Pro account</li>
                     <li>Navigate to your Dashboard → API Keys</li>
-                    <li>Click "Generate New API Key"</li>
+                    <li>Click &quot;Generate New API Key&quot;</li>
                     <li>Copy and securely store your key</li>
                   </ol>
                 </div>
