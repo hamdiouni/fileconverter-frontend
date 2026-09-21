@@ -58,7 +58,7 @@ function getTargetFormats(sourceExt: string): string[] {
     const entry = cat.formats.find((f) => f.name === ext);
     if (entry) entry.conversions.forEach((c) => targets.add(c.targetFormat));
   }
-  return [...targets].sort();
+  return Array.from(targets).sort();
 }
 
 function extOf(f: string) {
