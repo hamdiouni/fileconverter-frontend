@@ -193,8 +193,38 @@ function OptionsPanel({ options, onChange, targetFormat }: {
 
 // ─── Status card ──────────────────────────────────────────────────────────────
 
+/**
+ * Programmatic blob download — required because the presigned MinIO URL is on
+ * a different origin (localhost:9000) from the frontend (localhost:3000).
+ * Browsers IGNORE the `download` attribute for cross-origin URLs and navigate
+ * away instead. We fetch the blob first and create a local object URL.
+ */
+async function triggerBlobDownload(url: string, filename: string, setDownloading: (v: boolean) => void) {
+  setDownloading(true);
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Download failed: HTTP ${res.status}`);
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = objectUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 10_000);
+  } catch (err) {
+    console.error('Download error:', err);
+    // Fallback: open in new tab
+    window.open(url, '_blank', 'noopener,noreferrer');
+  } finally {
+    setDownloading(false);
+  }
+}
+
 function StatusCard({ state }: { state: ConversionState }) {
   const { stage, uploadPct, job, downloadUrl, error } = state;
+  const [downloading, setDownloading] = useState(false);
   if (stage === 'idle') return null;
 
   return (
@@ -254,10 +284,18 @@ function StatusCard({ state }: { state: ConversionState }) {
                 {job && <p className="text-green-700 dark:text-green-400">{job.sourceFormat.toUpperCase()} → {job.targetFormat.toUpperCase()}</p>}
               </div>
             </div>
-            <Button className="w-full gap-2" asChild>
-              <a href={downloadUrl} download={state.downloadFilename || `converted.${job?.targetFormat || 'file'}`}>
-                <Download className="h-4 w-4" /> Download converted file
-              </a>
+            <Button
+              className="w-full gap-2"
+              disabled={downloading}
+              onClick={() => triggerBlobDownload(
+                downloadUrl,
+                state.downloadFilename || `converted.${job?.targetFormat || 'file'}`,
+                setDownloading,
+              )}
+            >
+              {downloading
+                ? <><Loader2 className="h-4 w-4 animate-spin" /> Downloading…</>
+                : <><Download className="h-4 w-4" /> Download converted file</>}
             </Button>
           </div>
         )}

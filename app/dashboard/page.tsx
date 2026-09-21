@@ -366,7 +366,17 @@ export default function DashboardPage() {
                               onClick={async () => {
                                 try {
                                   const { url } = await uploads.getDownloadUrl(job.resultFileId!);
-                                  window.open(url, '_blank');
+                                  // Fetch as blob to avoid cross-origin navigation issue
+                                  const res = await fetch(url);
+                                  const blob = await res.blob();
+                                  const objectUrl = URL.createObjectURL(blob);
+                                  const a = document.createElement('a');
+                                  a.href = objectUrl;
+                                  a.download = job.resultFileId!;
+                                  document.body.appendChild(a);
+                                  a.click();
+                                  document.body.removeChild(a);
+                                  setTimeout(() => URL.revokeObjectURL(objectUrl), 10_000);
                                 } catch { /* ignore */ }
                               }}
                             >
