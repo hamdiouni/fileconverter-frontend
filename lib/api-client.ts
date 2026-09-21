@@ -400,7 +400,7 @@ export const uploads = {
           };
         }
 
-        xhr.onload = () => (xhr.status < 300 ? resolve() : reject(new Error(`Upload failed with status ${xhr.status}`));
+        xhr.onload = () => (xhr.status < 300 ? resolve() : reject(new Error(`Upload failed with status ${xhr.status}`)));
         xhr.onerror = () => reject(new Error('Network error during upload'));
         xhr.send(file);
       }
