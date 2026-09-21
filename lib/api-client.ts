@@ -200,9 +200,11 @@ async function request<T>(
 ): Promise<T> {
   const url = `${BASE_URL}${path}`;
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
     ...options.headers,
   };
+  if (options.body !== undefined) {
+    headers['Content-Type'] = 'application/json';
+  }
 
   const token = options.token !== undefined ? options.token : getAccessToken();
   if (token) {
@@ -411,7 +413,7 @@ export const uploads = {
    * Step 3 — notify the backend the upload is complete.
    */
   async confirmUpload(uploadId: string): Promise<void> {
-    return request('POST', `/uploads/${uploadId}/complete`);
+    return request('POST', `/uploads/${uploadId}/complete`, { body: {} });
   },
 
   async getMetadata(uploadId: string): Promise<FileMetadata> {
