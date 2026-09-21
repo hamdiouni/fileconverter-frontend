@@ -421,7 +421,14 @@ export const uploads = {
   },
 
   async getDownloadUrl(uploadId: string): Promise<{ url: string; expiresAt: string }> {
-    return request('GET', `/uploads/${uploadId}/download`);
+    const data = await request<{ downloadUrl?: string; url?: string; expiresIn?: number; expiresAt?: string }>(
+      'GET',
+      `/uploads/${uploadId}/download`,
+    );
+    return {
+      url: data.downloadUrl ?? data.url ?? '',
+      expiresAt: data.expiresAt ?? String(data.expiresIn ?? 3600),
+    };
   },
 };
 
