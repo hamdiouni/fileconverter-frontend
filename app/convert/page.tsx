@@ -65,6 +65,9 @@ function getTargetFormats(sourceExt: string): string[] {
     if (entry) entry.conversions.forEach((c) => targets.add(c.targetFormat));
   }
 
+  // Always allow converting any format to ZIP archive
+  targets.add('ZIP');
+
   // If source is an image format, ensure PDF is an available target (e.g. PNG to PDF)
   const imageExts = new Set(['PNG', 'JPG', 'JPEG', 'WEBP', 'BMP', 'ICO', 'TIFF', 'GIF', 'SVG', 'PSD']);
   if (imageExts.has(ext)) {

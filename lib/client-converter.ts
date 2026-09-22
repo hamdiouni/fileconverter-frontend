@@ -27,7 +27,7 @@ import { jsPDF } from 'jspdf';
 import { createZipBlob } from './archive-helper';
 
 const SUPPORTED_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'svg', 'gif']);
-const TARGET_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'pdf']);
+const TARGET_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'pdf', 'zip']);
 
 const SUPPORTED_DATA_PAIRS = new Set([
   'json:csv',
