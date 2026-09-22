@@ -77,7 +77,7 @@ export function getDirectGoogleAuthUrl(returnTo: string = '/dashboard'): string 
     } else if (port === '3000') {
       redirectUri = 'http://localhost:3000/api/auth/callback/google';
     } else if (hostname.includes('vercel.app')) {
-      redirectUri = `${origin}/api/auth/callback/google`;
+      redirectUri = 'https://fileconverter-frontend-fawn.vercel.app/api/auth/callback/google';
     } else if (port === '' || port === '80') {
       redirectUri = `${origin}/api/v1/auth/callback/google`;
     } else {
