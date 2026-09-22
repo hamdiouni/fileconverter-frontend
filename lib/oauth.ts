@@ -58,10 +58,9 @@ export function getGoogleAuthUrl(returnTo: string = '/dashboard'): string {
 }
 
 /**
- * Initiates the Google OAuth Sign-in flow
+ * Initiates the Google OAuth Sign-in flow via the server-side endpoint
  */
 export function initiateGoogleLogin(returnTo: string = '/dashboard'): void {
   if (typeof window === 'undefined') return;
-  const url = getGoogleAuthUrl(returnTo);
-  window.location.href = url;
+  window.location.href = `/api/auth/google?returnTo=${encodeURIComponent(returnTo)}`;
 }
