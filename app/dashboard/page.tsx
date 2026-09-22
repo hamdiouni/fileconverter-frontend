@@ -92,7 +92,7 @@ function TableRowSkeleton() {
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user, init } = useAuthStore();
+  const { user, init, isInitialized } = useAuthStore();
 
   const [profile, setProfile]   = useState<UserProfile | null>(null);
   const [usage, setUsage]       = useState<UsageStats | null>(null);
@@ -104,12 +104,13 @@ export default function DashboardPage() {
   // Initialise auth from localStorage
   useEffect(() => { init(); }, [init]);
 
-  // Guard: redirect to login if not authenticated
+  // Guard: redirect to login only after init() has confirmed there is no user
   useEffect(() => {
-    if (!user) {
+    if (isInitialized && !user) {
       router.replace('/auth/login?redirect=/dashboard');
     }
-  }, [user, router]);
+  }, [isInitialized, user, router]);
+
 
   const fetchData = async (quiet = false) => {
     if (!quiet) setLoading(true);

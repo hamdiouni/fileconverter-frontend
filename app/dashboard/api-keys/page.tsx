@@ -38,7 +38,7 @@ function relativeTime(iso: string) {
 
 export default function ApiKeysPage() {
   const router = useRouter();
-  const { user, init } = useAuthStore();
+  const { user, init, isInitialized } = useAuthStore();
   const [keys, setKeys]         = useState<ApiKey[]>([]);
   const [loading, setLoading]   = useState(true);
   const [showCreate, setShowCreate] = useState(false);
@@ -53,12 +53,14 @@ export default function ApiKeysPage() {
 
   useEffect(() => { init(); }, [init]);
   useEffect(() => {
+    if (!isInitialized) return;
     if (!user) { router.replace('/auth/login?redirect=/dashboard/api-keys'); return; }
     auth.listApiKeys()
       .then(setKeys)
       .catch(() => toast.error('Failed to load API keys'))
       .finally(() => setLoading(false));
-  }, [user, router]);
+  }, [isInitialized, user, router]);
+
 
   const handleCreate = async (values: CreateValues) => {
     setCreating(true);

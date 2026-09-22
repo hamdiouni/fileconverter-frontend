@@ -37,7 +37,7 @@ type FormValues = z.infer<typeof schema>;
 
 export default function WebhooksPage() {
   const router = useRouter();
-  const { user, init } = useAuthStore();
+  const { user, init, isInitialized } = useAuthStore();
   const [hooks, setHooks]       = useState<WebhookEndpoint[]>([]);
   const [loading, setLoading]   = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -52,6 +52,7 @@ export default function WebhooksPage() {
   useEffect(() => { init(); }, [init]);
 
   useEffect(() => {
+    if (!isInitialized) return;
     if (!user) { router.replace('/auth/login?redirect=/dashboard/webhooks'); return; }
     webhooksApi.list()
       .then(setHooks)
@@ -60,7 +61,8 @@ export default function WebhooksPage() {
         setLoadError(msg);
       })
       .finally(() => setLoading(false));
-  }, [user, router]);
+  }, [isInitialized, user, router]);
+
 
   const handleCreate = async (values: FormValues) => {
     if (selectedEvents.length === 0) {

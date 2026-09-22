@@ -12,6 +12,12 @@ interface AuthState {
   user: AuthUser | null;
   profile: UserProfile | null;
   isLoading: boolean;
+  /**
+   * True once init() has run and checked localStorage.
+   * Protected pages MUST wait for isInitialized before redirecting —
+   * this prevents the race condition where user is null briefly on page reload.
+   */
+  isInitialized: boolean;
   error: string | null;
 
   // Initialise from localStorage on mount
@@ -28,14 +34,19 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
   user: null,
   profile: null,
   isLoading: false,
+  isInitialized: false,
   error: null,
 
   init() {
+    // Guard: only run once
+    if (get().isInitialized) return;
+
     const stored = getStoredAuth();
     if (stored && stored.expiresAt > Date.now() + 60_000) {
-      set({ user: stored.user });
+      set({ user: stored.user, isInitialized: true });
     } else {
       clearStoredAuth();
+      set({ user: null, isInitialized: true });
     }
   },
 
@@ -43,7 +54,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const result = await authApi.login(email, password);
-      set({ user: result.user, isLoading: false });
+      set({ user: result.user, isLoading: false, isInitialized: true });
     } catch (err) {
       const msg = (err as ApiClientError).message ?? 'Login failed';
       set({ isLoading: false, error: msg });
@@ -55,7 +66,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const result = await authApi.register(email, password);
-      set({ user: result.user, isLoading: false });
+      set({ user: result.user, isLoading: false, isInitialized: true });
     } catch (err) {
       const msg = (err as ApiClientError).message ?? 'Registration failed';
       set({ isLoading: false, error: msg });
@@ -65,7 +76,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
 
   logout() {
     authApi.logout();
-    set({ user: null, profile: null, error: null });
+    set({ user: null, profile: null, error: null, isInitialized: true });
   },
 
   setProfile(profile) {

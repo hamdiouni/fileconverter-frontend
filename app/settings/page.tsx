@@ -29,7 +29,7 @@ type ProfileValues = z.infer<typeof profileSchema>;
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { user, init, logout } = useAuthStore();
+  const { user, init, logout, isInitialized } = useAuthStore();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving]   = useState(false);
@@ -40,12 +40,14 @@ export default function SettingsPage() {
 
   useEffect(() => { init(); }, [init]);
   useEffect(() => {
+    if (!isInitialized) return;
     if (!user) { router.replace('/auth/login?redirect=/settings'); return; }
     users.getProfile()
       .then((p) => { setProfile(p); reset({ name: p.name ?? '', company: p.company ?? '' }); })
       .catch(() => toast.error('Failed to load profile'))
       .finally(() => setLoading(false));
-  }, [user, router, reset]);
+  }, [isInitialized, user, router, reset]);
+
 
   const onSave = async (values: ProfileValues) => {
     setSaving(true);
@@ -61,7 +63,8 @@ export default function SettingsPage() {
     }
   };
 
-  if (!user || loading) {
+  if (!isInitialized || !user || loading) {
+
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
