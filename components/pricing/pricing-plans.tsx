@@ -9,14 +9,37 @@ import Link from 'next/link';
 import { getAccessToken } from '@/lib/api-client';
 import { toast } from 'sonner';
 
-// Stripe price IDs — set real IDs in NEXT_PUBLIC_STRIPE_* env vars
-const STRIPE_PRICE_IDS: Record<string, string> = {
-  pro:      process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO      ?? 'price_pro_monthly',
-  business: process.env.NEXT_PUBLIC_STRIPE_PRICE_BUSINESS  ?? 'price_business_monthly',
+// Stripe price IDs configured for both monthly and yearly intervals
+const STRIPE_PRICES = {
+  pro: {
+    monthly: {
+      price: '$29',
+      period: '/month',
+      stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_MONTHLY ?? process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO ?? 'price_pro_monthly',
+    },
+    yearly: {
+      price: '$24',
+      period: '/month, billed yearly',
+      stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_YEARLY ?? 'price_pro_yearly',
+    },
+  },
+  business: {
+    monthly: {
+      price: '$99',
+      period: '/month',
+      stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_BUSINESS_MONTHLY ?? process.env.NEXT_PUBLIC_STRIPE_PRICE_BUSINESS ?? 'price_business_monthly',
+    },
+    yearly: {
+      price: '$79',
+      period: '/month, billed yearly',
+      stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_BUSINESS_YEARLY ?? 'price_business_yearly',
+    },
+  },
 };
 
-const plans = [
+const basePlans = [
   {
+    id: 'free',
     name: 'Free',
     price: '$0',
     period: '/month',
@@ -32,13 +55,11 @@ const plans = [
     ],
     cta: 'Get Started Free',
     href: '/auth/signup',
-    stripePrice: null,
     popular: false
   },
   {
+    id: 'pro',
     name: 'Pro',
-    price: '$29',
-    period: '/month',
     description: 'For professionals and power users',
     icon: Zap,
     features: [
@@ -53,13 +74,11 @@ const plans = [
     ],
     cta: 'Start Pro Trial',
     href: '/auth/signup?plan=pro',
-    stripePrice: STRIPE_PRICE_IDS['pro'],
     popular: true
   },
   {
+    id: 'business',
     name: 'Business',
-    price: '$99',
-    period: '/month',
     description: 'For teams and growing businesses',
     icon: Building2,
     features: [
@@ -76,10 +95,10 @@ const plans = [
     ],
     cta: 'Start Business Trial',
     href: '/auth/signup?plan=business',
-    stripePrice: STRIPE_PRICE_IDS['business'],
     popular: false
   },
   {
+    id: 'enterprise',
     name: 'Enterprise',
     price: 'Custom',
     period: '',
@@ -101,7 +120,6 @@ const plans = [
     ],
     cta: 'Contact Sales',
     href: '/contact-sales',
-    stripePrice: null,
     popular: false
   }
 ];
@@ -137,13 +155,14 @@ async function startCheckout(priceId: string): Promise<void> {
 }
 
 export function PricingPlans() {
+  const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('monthly');
   const [loading, setLoading] = useState<string | null>(null);
 
-  const handlePlanClick = async (plan: typeof plans[number]) => {
-    if (!plan.stripePrice) return; // Free or Enterprise — let Link handle it
-    setLoading(plan.name);
+  const handlePlanClick = async (planName: string, stripePrice: string | null) => {
+    if (!stripePrice) return; // Free or Enterprise — let Link handle it
+    setLoading(planName);
     try {
-      await startCheckout(plan.stripePrice);
+      await startCheckout(stripePrice);
     } catch (err) {
       toast.error((err as Error).message ?? 'Failed to start checkout. Please try again.');
       setLoading(null);
@@ -153,7 +172,7 @@ export function PricingPlans() {
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Choose Your Plan
           </h2>
@@ -162,10 +181,47 @@ export function PricingPlans() {
           </p>
         </div>
 
+        {/* Billing Interval Toggle */}
+        <div className="flex items-center justify-center gap-3 mb-14">
+          <button
+            type="button"
+            onClick={() => setBillingInterval('monthly')}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+              billingInterval === 'monthly'
+                ? 'bg-primary text-primary-foreground shadow-sm'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            Monthly
+          </button>
+          <button
+            type="button"
+            onClick={() => setBillingInterval('yearly')}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+              billingInterval === 'yearly'
+                ? 'bg-primary text-primary-foreground shadow-sm'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <span>Yearly</span>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-700 dark:text-green-300 font-semibold">
+              Save 20%
+            </span>
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {plans.map((plan) => {
+          {basePlans.map((plan) => {
             const IconComponent = plan.icon;
             const isLoading = loading === plan.name;
+            const isPro = plan.id === 'pro';
+            const isBusiness = plan.id === 'business';
+            const tierConfig = isPro ? STRIPE_PRICES.pro[billingInterval] : isBusiness ? STRIPE_PRICES.business[billingInterval] : null;
+
+            const priceDisplay = tierConfig ? tierConfig.price : plan.price;
+            const periodDisplay = tierConfig ? tierConfig.period : plan.period;
+            const stripePrice = tierConfig ? tierConfig.stripePrice : null;
+
             return (
               <Card
                 key={plan.name}
@@ -195,8 +251,8 @@ export function PricingPlans() {
 
                 <CardContent className="text-center">
                   <div className="mb-6">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-muted-foreground">{plan.period}</span>
+                    <span className="text-4xl font-bold">{priceDisplay}</span>
+                    <span className="text-muted-foreground text-sm ml-1">{periodDisplay}</span>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left">
@@ -208,8 +264,7 @@ export function PricingPlans() {
                     ))}
                   </ul>
 
-                  {/* Stripe-wired plans get an onClick handler; others get an href */}
-                  {plan.stripePrice ? (
+                  {stripePrice ? (
                     <Button
                       className={`w-full gap-2 ${
                         plan.popular
@@ -217,7 +272,7 @@ export function PricingPlans() {
                           : 'bg-secondary hover:bg-secondary/90'
                       }`}
                       disabled={!!loading}
-                      onClick={() => handlePlanClick(plan)}
+                      onClick={() => handlePlanClick(plan.name, stripePrice)}
                     >
                       {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
                       {plan.cta}

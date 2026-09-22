@@ -50,47 +50,82 @@ These parameters were configured in Checkout Studio and are already set correctl
 
 ## Setup and Next Steps
 
-### 1. Environment Variables Setup
+## Environment Variables Setup
 
-Ensure your `.env` files contain matching variables:
+Configure your `backend/.env` with your Stripe credentials and Price IDs:
 
-#### In `backend/.env`:
 ```env
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_PUBLISHABLE_KEY=pk_test_...
+# Stripe API Keys (Dashboard -> Developers -> API keys)
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_PUBLISHABLE_KEY=pk_live_...
+
+# Webhook Secret (Dashboard -> Developers -> Webhooks -> Signing secret)
 STRIPE_WEBHOOK_SECRET=whsec_...
-STRIPE_PRICE_PRO=price_...
-STRIPE_PRICE_BUSINESS=price_...
+
+# Stripe Price IDs (Generated via automated script or Dashboard)
+STRIPE_PRICE_PRO_MONTHLY=price_...
+STRIPE_PRICE_PRO_YEARLY=price_...
+STRIPE_PRICE_BUSINESS_MONTHLY=price_...
+STRIPE_PRICE_BUSINESS_YEARLY=price_...
 ```
 
-#### In `converter-main/.env.local` (Frontend):
+For frontend (`.env.local` or Vercel environment variables):
 ```env
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+NEXT_PUBLIC_STRIPE_PRICE_PRO_MONTHLY=price_...
+NEXT_PUBLIC_STRIPE_PRICE_PRO_YEARLY=price_...
+NEXT_PUBLIC_STRIPE_PRICE_BUSINESS_MONTHLY=price_...
+NEXT_PUBLIC_STRIPE_PRICE_BUSINESS_YEARLY=price_...
 ```
 
-### 2. How the Integration Works
+---
 
-```
-[Customer on /pricing]
-       │
-       ▼ (Clicks "Upgrade to Pro")
-[Frontend: components/pricing/pricing-plans.tsx]
-       │
-       ▼ POST /api/v1/billing/checkout-session { priceId, successUrl, cancelUrl }
-[API Gateway -> Billing Service: billing.service.ts]
-       │
-       ▼ stripe.checkout.sessions.create(sessionParams)
-[Stripe Hosted Checkout Page]
-       │
-       ├─► Customer pays -> Redirects to /dashboard?checkout=success
-       │
-       ▼ Webhook: customer.subscription.created
-[Billing Service: handleWebhook()]
-       │
-       ▼ Upserts subscription in PostgreSQL database and updates tier
+## Automated Product & Price Provisioning
+
+An automated setup script is available in the backend to create all 4 Products and recurring Prices in 5 seconds:
+
+```bash
+cd backend
+npm run stripe:setup -- <YOUR_STRIPE_SECRET_KEY> --update-env
 ```
 
-### 3. Testing with Test Cards
+Or using Node directly:
+```bash
+node scripts/setup-stripe-products.js <YOUR_STRIPE_SECRET_KEY> --update-env
+```
+
+This automatically:
+1. Creates `FileConverter Free` ($0 tier)
+2. Creates `FileConverter Pro` with:
+   - Monthly: $29.00 USD/mo
+   - Yearly: $290.00 USD/yr (2 months free discount)
+3. Creates `FileConverter Business` with:
+   - Monthly: $99.00 USD/mo
+   - Yearly: $990.00 USD/yr (2 months free discount)
+4. Creates `FileConverter Enterprise` (Custom tier)
+5. Automatically writes `STRIPE_PRICE_PRO_MONTHLY`, `STRIPE_PRICE_PRO_YEARLY`, `STRIPE_PRICE_BUSINESS_MONTHLY`, `STRIPE_PRICE_BUSINESS_YEARLY` into `backend/.env`.
+
+---
+
+## Stripe Webhook Setup
+
+1. Open **Stripe Dashboard** -> **Developers** -> **Webhooks** (or https://dashboard.stripe.com/webhooks).
+2. Click **Add destination** / **Add endpoint**.
+3. Set **Endpoint URL**:
+   ```
+   https://api.yourdomain.com/api/v1/billing/webhook
+   ```
+4. Select the following **3 events**:
+   - `checkout.session.completed`
+   - `customer.subscription.updated`
+   - `customer.subscription.deleted`
+   *(Optional for invoices: `invoice.payment_succeeded`, `invoice.payment_failed`)*
+5. Click **Add endpoint**.
+6. Reveal the **Signing secret** (starts with `whsec_`) and set it as `STRIPE_WEBHOOK_SECRET` in `backend/.env`.
+
+---
+
+## Testing with Test Cards
 
 Stripe provides standard test card numbers for test mode:
 - **Card number:** `4242 4242 4242 4242`
@@ -100,26 +135,6 @@ Stripe provides standard test card numbers for test mode:
 
 For 3D Secure and SCA authentication tests, refer to:
 https://stripe.com/docs/testing#regulatory-cards
-
-### 4. Local Webhook Testing with Stripe CLI
-
-To test webhook events locally against the Docker billing service:
-```bash
-stripe listen --forward-to http://localhost/api/v1/billing/webhook
-```
-Copy the webhook signing secret output by the command (starts with `whsec_`) and set it as `STRIPE_WEBHOOK_SECRET` in your `backend/.env`.
-
-### 5. Production Next Steps
-1. Create real Products and Prices in the [Stripe Dashboard](https://dashboard.stripe.com/products).
-2. Configure live API keys (`sk_live_...`, `pk_live_...`).
-3. Add your production webhook endpoint in [Stripe Webhooks Dashboard](https://dashboard.stripe.com/workbench/webhooks) pointing to:
-   `https://api.yourdomain.com/api/v1/billing/webhook`
-   with events:
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
-   - `invoice.payment_succeeded`
-   - `invoice.payment_failed`
 
 ---
 

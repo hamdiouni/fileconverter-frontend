@@ -42,3 +42,12 @@ scratch/
 /.kiro
 /project_overview.md
 /prompt.txt
+.agents/
+.aider-desk/
+.augment/
+.autohand/
+.bob/
+.claude/
+data/
+skills-lock.json
+
