@@ -64,8 +64,10 @@ function LoginForm() {
   const urlError = searchParams.get('error');
   useEffect(() => {
     if (urlError) {
-      if (urlError === 'missing_google_client_id') {
-        toast.error('Google Client ID is not configured in .env.local.');
+      if (urlError === 'missing_google_client_id' || urlError === 'missing_credentials') {
+        toast.error('Google OAuth credentials are missing in environment variables.');
+      } else if (urlError === 'token_exchange_failed') {
+        toast.error('Google token exchange failed. Please verify OAuth client ID & secret.');
       } else if (urlError === 'oauth_cancelled') {
         toast.info('Google Sign-in was cancelled.');
       } else {
@@ -153,6 +155,24 @@ function LoginForm() {
               </Link>
             </p>
           </div>
+
+          {urlError && (
+            <div className="p-3 rounded-lg border border-destructive/40 bg-destructive/10 text-destructive text-sm flex items-start gap-2.5">
+              <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-semibold text-xs uppercase tracking-wider">
+                  {urlError === 'missing_credentials' || urlError === 'missing_google_client_id'
+                    ? 'Google OAuth Missing Configuration'
+                    : 'Authentication Alert'}
+                </p>
+                <p className="text-xs opacity-90 leading-relaxed">
+                  {urlError === 'missing_credentials' || urlError === 'missing_google_client_id'
+                    ? 'OAuth credentials are not configured in Vercel environment variables. Please add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to Vercel Project Settings.'
+                    : `Error details: ${urlError}. Please try again or sign in with email.`}
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* OAuth */}
           <div className="grid grid-cols-2 gap-3">

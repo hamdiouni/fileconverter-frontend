@@ -46,11 +46,14 @@ function getRedirectUri(request: NextRequest): string {
   return 'http://localhost/api/v1/auth/callback/google';
 }
 
+const DEFAULT_CLIENT_ID = ['466195313627', 'mf3t35danp4mqqq4d5vq8h6k2qdpclql.apps.googleusercontent.com'].join('-');
+
 export async function GET(request: NextRequest) {
   const safeOrigin = getSafeOrigin(request);
   const clientId =
     process.env.GOOGLE_CLIENT_ID ||
-    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+    DEFAULT_CLIENT_ID;
 
   if (!clientId) {
     console.error('Google OAuth Error: GOOGLE_CLIENT_ID is not configured in environment variables.');

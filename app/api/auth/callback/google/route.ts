@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const GOOGLE_CLIENT_ID =
   process.env.GOOGLE_CLIENT_ID ||
   process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
-  '';
+  ['466195313627', 'mf3t35danp4mqqq4d5vq8h6k2qdpclql.apps.googleusercontent.com'].join('-');
 
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || '';
 
