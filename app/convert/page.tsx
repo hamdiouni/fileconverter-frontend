@@ -32,7 +32,6 @@ import { uploads, conversions, ApiClientError, type ConversionJob } from '@/lib/
 import { getCategoryData, getAllCategoryIds } from '@/lib/conversions';
 import { canConvertClientSide, convertClientSide } from '@/lib/client-converter';
 import { AdBanner } from '@/components/ads/ad-banner';
-import { MonetizationGuideDialog } from '@/components/ads/monetization-guide-dialog';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -489,7 +488,6 @@ function ConvertContent() {
         <div className="container mx-auto px-4 text-center space-y-3">
           <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
             <Badge variant="outline">Free &amp; Instant Converter</Badge>
-            <MonetizationGuideDialog />
           </div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Convert Your Files</h1>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
