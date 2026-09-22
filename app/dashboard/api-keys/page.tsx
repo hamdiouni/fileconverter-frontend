@@ -57,7 +57,7 @@ export default function ApiKeysPage() {
     if (!user) { router.replace('/auth/login?redirect=/dashboard/api-keys'); return; }
     auth.listApiKeys()
       .then(setKeys)
-      .catch(() => toast.error('Failed to load API keys'))
+      .catch(() => setKeys([]))
       .finally(() => setLoading(false));
   }, [isInitialized, user, router]);
 

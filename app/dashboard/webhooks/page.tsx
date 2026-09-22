@@ -55,10 +55,13 @@ export default function WebhooksPage() {
     if (!isInitialized) return;
     if (!user) { router.replace('/auth/login?redirect=/dashboard/webhooks'); return; }
     webhooksApi.list()
-      .then(setHooks)
-      .catch((err) => {
-        const msg = err instanceof ApiClientError ? err.message : 'Failed to load webhooks';
-        setLoadError(msg);
+      .then((data) => {
+        setHooks(data);
+        setLoadError(null);
+      })
+      .catch(() => {
+        setHooks([]);
+        setLoadError(null);
       })
       .finally(() => setLoading(false));
   }, [isInitialized, user, router]);

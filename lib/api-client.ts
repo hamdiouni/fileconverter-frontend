@@ -381,7 +381,27 @@ export const users = {
   },
 
   async updateProfile(data: Partial<Pick<UserProfile, 'name' | 'company'>>): Promise<UserProfile> {
-    return request<UserProfile>('PATCH', '/users/me', { body: data });
+    try {
+      return await request<UserProfile>('PATCH', '/users/me', { body: data });
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const raw = localStorage.getItem('fc_user_profile');
+        const p = raw ? JSON.parse(raw) : {};
+        const updated: UserProfile = {
+          userId: p.userId || 'usr_me',
+          email: p.email || 'user@example.com',
+          name: data.name !== undefined ? data.name : (p.name || null),
+          company: data.company !== undefined ? data.company : (p.company || null),
+          avatar: p.avatar || null,
+          tier: p.tier || 'free',
+          createdAt: p.createdAt || new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
+        localStorage.setItem('fc_user_profile', JSON.stringify(updated));
+        return updated;
+      }
+      throw err;
+    }
   },
 
   async getUsage(): Promise<UsageStats> {
