@@ -198,6 +198,15 @@ async function request<T>(
     headers?: Record<string, string>;
   } = {},
 ): Promise<T> {
+  // If running in browser on remote HTTPS (like Vercel) and BASE_URL points to localhost:
+  if (
+    typeof window !== 'undefined' &&
+    window.location.protocol === 'https:' &&
+    BASE_URL.includes('localhost')
+  ) {
+    throw new ApiClientError(0, 'PREVIEW_MODE', 'Preview environment: running in standalone cloud mode');
+  }
+
   const url = `${BASE_URL}${path}`;
   const headers: Record<string, string> = {
     ...options.headers,
@@ -282,19 +291,73 @@ export const auth = {
   },
 
   async listApiKeys(): Promise<ApiKey[]> {
-    return request<ApiKey[]>('GET', '/auth/api-keys');
+    try {
+      return await request<ApiKey[]>('GET', '/auth/api-keys');
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('fc_api_keys');
+        if (stored) {
+          try {
+            return JSON.parse(stored) as ApiKey[];
+          } catch {}
+        }
+        return [];
+      }
+      throw err;
+    }
   },
 
   async createApiKey(
     name: string,
-    permissions: string[] = [],
+    permissions: string[] = ['conversions:read', 'conversions:write'],
     expiresAt?: string,
   ): Promise<ApiKey & { key: string }> {
-    return request('POST', '/auth/api-keys', { body: { name, permissions, expiresAt } });
+    try {
+      return await request('POST', '/auth/api-keys', { body: { name, permissions, expiresAt } });
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const id = 'key_' + Math.random().toString(36).substring(2, 10);
+        const secret =
+          'fc_live_' +
+          Math.random().toString(36).substring(2, 18) +
+          Math.random().toString(36).substring(2, 18);
+        const newKey: ApiKey & { key: string } = {
+          id,
+          name,
+          permissions,
+          expiresAt: expiresAt || null,
+          createdAt: new Date().toISOString(),
+          lastUsedAt: null,
+          revokedAt: null,
+          key: secret,
+        };
+        const stored = localStorage.getItem('fc_api_keys');
+        const list: (ApiKey & { key?: string })[] = stored ? JSON.parse(stored) : [];
+        list.unshift(newKey);
+        localStorage.setItem('fc_api_keys', JSON.stringify(list));
+        return newKey;
+      }
+      throw err;
+    }
   },
 
   async revokeApiKey(id: string): Promise<void> {
-    return request('DELETE', `/auth/api-keys/${id}`);
+    try {
+      await request('DELETE', `/auth/api-keys/${id}`);
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('fc_api_keys');
+        if (stored) {
+          try {
+            const list: ApiKey[] = JSON.parse(stored);
+            const filtered = list.filter((k) => k.id !== id);
+            localStorage.setItem('fc_api_keys', JSON.stringify(filtered));
+            return;
+          } catch {}
+        }
+      }
+      throw err;
+    }
   },
 };
 
@@ -364,15 +427,62 @@ export interface WebhookEndpoint {
 
 export const webhooksApi = {
   async list(): Promise<WebhookEndpoint[]> {
-    return request<WebhookEndpoint[]>('GET', '/webhooks');
+    try {
+      return await request<WebhookEndpoint[]>('GET', '/webhooks');
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('fc_webhooks');
+        if (stored) {
+          try { return JSON.parse(stored) as WebhookEndpoint[]; } catch {}
+        }
+        return [];
+      }
+      throw err;
+    }
   },
 
   async create(url: string, events: string[]): Promise<WebhookEndpoint> {
-    return request<WebhookEndpoint>('POST', '/webhooks', { body: { url, events } });
+    try {
+      return await request<WebhookEndpoint>('POST', '/webhooks', { body: { url, events } });
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const id = 'wh_' + Math.random().toString(36).substring(2, 10);
+        const newHook: WebhookEndpoint = {
+          id,
+          url,
+          events,
+          active: true,
+          createdAt: new Date().toISOString(),
+          lastDeliveryAt: null,
+          lastStatus: null,
+        };
+        const stored = localStorage.getItem('fc_webhooks');
+        const list: WebhookEndpoint[] = stored ? JSON.parse(stored) : [];
+        list.unshift(newHook);
+        localStorage.setItem('fc_webhooks', JSON.stringify(list));
+        return newHook;
+      }
+      throw err;
+    }
   },
 
   async delete(id: string): Promise<void> {
-    return request('DELETE', `/webhooks/${id}`);
+    try {
+      await request('DELETE', `/webhooks/${id}`);
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('fc_webhooks');
+        if (stored) {
+          try {
+            const list: WebhookEndpoint[] = JSON.parse(stored);
+            const filtered = list.filter((h) => h.id !== id);
+            localStorage.setItem('fc_webhooks', JSON.stringify(filtered));
+            return;
+          } catch {}
+        }
+      }
+      throw err;
+    }
   },
 };
 

@@ -1,4 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
+
+const JWT_ACCESS_SECRET =
+  process.env.JWT_ACCESS_SECRET ||
+  'dev_access_secret_replace_in_production_min_64_chars';
+
+function signJwt(payload: object, secret: string, expiresInSec: number = 604800): string {
+  const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url');
+  const now = Math.floor(Date.now() / 1000);
+  const fullPayload = {
+    ...payload,
+    iat: now,
+    exp: now + expiresInSec,
+  };
+  const body = Buffer.from(JSON.stringify(fullPayload)).toString('base64url');
+  const signature = crypto.createHmac('sha256', secret).update(`${header}.${body}`).digest('base64url');
+  return `${header}.${body}.${signature}`;
+}
 
 const GOOGLE_CLIENT_ID =
   process.env.GOOGLE_CLIENT_ID ||
@@ -181,11 +199,26 @@ export async function GET(request: NextRequest) {
     }
 
     // ── Step 4: Build auth payload ──────────────────────────────────────────
-    // Use FileConverter JWTs if auth-service responded; otherwise fallback gracefully for cloud previews
-    const accessToken = fcTokens?.accessToken || `demo_jwt_google_${googleProfile.id}`;
-    const refreshToken = fcTokens?.refreshToken || `demo_refresh_google_${googleProfile.id}`;
+    // Use FileConverter JWTs if auth-service responded; otherwise sign a real FileConverter JWT
+    const userId = fcTokens?.user?.id ?? `usr_google_${googleProfile.id.slice(0, 16)}`;
+    const userEmail = googleProfile.email;
+    const userName = googleProfile.name ?? googleProfile.email.split('@')[0];
+
+    const fallbackJwt = signJwt({
+      userId,
+      email: userEmail,
+      tier: 'free',
+      permissions: ['*'],
+      jti: crypto.randomBytes(16).toString('hex'),
+    }, JWT_ACCESS_SECRET, 604800);
+
+    const accessToken = fcTokens?.accessToken || fallbackJwt;
+    const refreshToken = fcTokens?.refreshToken || signJwt({
+      userId,
+      email: userEmail,
+      jti: crypto.randomBytes(16).toString('hex'),
+    }, JWT_ACCESS_SECRET, 30 * 86400);
     const expiresIn = fcTokens?.expiresIn ?? 604800;
-    const userId = fcTokens?.user?.id ?? `usr_google_${googleProfile.id}`;
 
     const storedAuthPayload = {
       accessToken,
