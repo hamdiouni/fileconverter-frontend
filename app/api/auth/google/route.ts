@@ -23,6 +23,9 @@ export async function GET(request: NextRequest) {
       redirectUri = 'http://localhost:8080/api/auth/callback/google';
     } else if (url.port === '' || url.port === '80') {
       redirectUri = 'http://localhost/api/v1/auth/callback/google';
+    } else {
+      // Port 3000 or any other local port: default to the authorized port 8080 URI
+      redirectUri = 'http://localhost:8080/api/auth/callback/google';
     }
   }
 
