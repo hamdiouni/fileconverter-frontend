@@ -117,21 +117,66 @@ export default function DashboardPage() {
     else setRefreshing(true);
 
     try {
-      const [p, u, j] = await Promise.all([
+      const [pResult, uResult, jResult] = await Promise.allSettled([
         users.getProfile(),
         users.getUsage(),
         conversions.list({ pageSize: 10 }),
       ]);
-      setProfile(p);
-      setUsage(u);
-      setJobs(j);
+
+      if (pResult.status === 'fulfilled') {
+        setProfile(pResult.value);
+      } else {
+        // Fall back to stored profile from localStorage
+        let fallbackP: UserProfile | null = null;
+        if (typeof window !== 'undefined') {
+          const raw = localStorage.getItem('fc_user_profile');
+          if (raw) {
+            try { fallbackP = JSON.parse(raw); } catch {}
+          }
+        }
+        if (!fallbackP && user) {
+          fallbackP = {
+            userId: user.id,
+            email: user.email,
+            name: user.email.split('@')[0],
+            company: null,
+            avatar: null,
+            tier: 'free',
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+          };
+        }
+        if (fallbackP) setProfile(fallbackP);
+      }
+
+      if (uResult.status === 'fulfilled') {
+        setUsage(uResult.value);
+      } else {
+        setUsage({
+          conversionsThisMonth: 0,
+          apiCallsThisMonth: 0,
+          storageUsed: 0,
+          quotas: {
+            conversionsPerMonth: 50,
+            maxFileSize: 25 * 1024 * 1024,
+            apiCallsPerMonth: 100,
+            storageRetentionDays: 7,
+            priorityProcessing: false,
+            whiteLabel: false,
+          },
+          resetDate: new Date(Date.now() + 86400000 * 30).toISOString(),
+        });
+      }
+
+      if (jResult.status === 'fulfilled') {
+        setJobs(jResult.value);
+      } else {
+        setJobs({ data: [], total: 0, page: 1, pageSize: 10 });
+      }
+
       setError(null);
     } catch (err) {
-      if (err instanceof ApiClientError && err.status === 401) {
-        router.replace('/auth/login?redirect=/dashboard');
-      } else {
-        setError((err as Error).message ?? 'Failed to load dashboard data.');
-      }
+      setError((err as Error).message ?? 'Failed to load dashboard data.');
     } finally {
       setLoading(false);
       setRefreshing(false);

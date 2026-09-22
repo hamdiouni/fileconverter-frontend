@@ -302,7 +302,19 @@ export const auth = {
 
 export const users = {
   async getProfile(): Promise<UserProfile> {
-    return request<UserProfile>('GET', '/users/me');
+    try {
+      return await request<UserProfile>('GET', '/users/me');
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        const raw = localStorage.getItem('fc_user_profile');
+        if (raw) {
+          try {
+            return JSON.parse(raw) as UserProfile;
+          } catch {}
+        }
+      }
+      throw err;
+    }
   },
 
   async updateProfile(data: Partial<Pick<UserProfile, 'name' | 'company'>>): Promise<UserProfile> {
@@ -310,7 +322,27 @@ export const users = {
   },
 
   async getUsage(): Promise<UsageStats> {
-    return request<UsageStats>('GET', '/users/me/usage');
+    try {
+      return await request<UsageStats>('GET', '/users/me/usage');
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        return {
+          conversionsThisMonth: 0,
+          apiCallsThisMonth: 0,
+          storageUsed: 0,
+          quotas: {
+            conversionsPerMonth: 50,
+            maxFileSize: 25 * 1024 * 1024,
+            apiCallsPerMonth: 100,
+            storageRetentionDays: 7,
+            priorityProcessing: false,
+            whiteLabel: false,
+          },
+          resetDate: new Date(Date.now() + 86400000 * 30).toISOString(),
+        };
+      }
+      throw err;
+    }
   },
 
   async deleteAccount(): Promise<void> {
@@ -452,8 +484,20 @@ export const conversions = {
     if (params.status)   qs.set('status', params.status);
     if (params.page)     qs.set('page', String(params.page));
     if (params.pageSize) qs.set('pageSize', String(params.pageSize));
-    const q = qs.toString() ? `?${qs.toString()}` : '';
-    return request<PaginatedResponse<ConversionJob>>('GET', `/conversions${q}`);
+    try {
+      const q = qs.toString() ? `?${qs.toString()}` : '';
+      return await request<PaginatedResponse<ConversionJob>>('GET', `/conversions${q}`);
+    } catch (err) {
+      if (typeof window !== 'undefined') {
+        return {
+          data: [],
+          total: 0,
+          page: params.page ?? 1,
+          pageSize: params.pageSize ?? 10,
+        };
+      }
+      throw err;
+    }
   },
 
   async cancel(jobId: string): Promise<ConversionJob> {

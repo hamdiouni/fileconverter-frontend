@@ -76,10 +76,10 @@ function LoginForm() {
     }
   }, [urlError]);
 
-  // Redirect if already logged in
+  // Redirect if already logged in (only when no error was passed in the URL)
   useEffect(() => {
-    if (user) router.replace(redirectTo);
-  }, [user, router, redirectTo]);
+    if (user && !urlError) router.replace(redirectTo);
+  }, [user, router, redirectTo, urlError]);
 
   useEffect(() => () => clearError(), [clearError]);
 
