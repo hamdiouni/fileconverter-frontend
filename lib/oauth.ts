@@ -57,10 +57,52 @@ export function getGoogleAuthUrl(returnTo: string = '/dashboard'): string {
   return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
 }
 
+export const GOOGLE_CLIENT_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+  ['466195313627', 'mf3t35danp4mqqq4d5vq8h6k2qdpclql.apps.googleusercontent.com'].join('-');
+
 /**
- * Initiates the Google OAuth Sign-in flow via the server-side endpoint
+ * Generates the direct external Google authorization URL
+ * pointing straight to accounts.google.com to avoid Next.js soft-routing interference.
+ */
+export function getDirectGoogleAuthUrl(returnTo: string = '/dashboard'): string {
+  let redirectUri = 'http://localhost:8080/api/auth/callback/google';
+
+  if (typeof window !== 'undefined') {
+    if (window.location.port === '8080') {
+      redirectUri = 'http://localhost:8080/api/auth/callback/google';
+    } else if (window.location.port === '' || window.location.port === '80') {
+      redirectUri = `${window.location.origin}/api/v1/auth/callback/google`;
+    } else {
+      // Default to authorized port 8080 callback for local testing
+      redirectUri = 'http://localhost:8080/api/auth/callback/google';
+    }
+  }
+
+  const statePayload = {
+    returnTo,
+    redirectUri,
+    nonce: Math.random().toString(36).substring(2, 15),
+  };
+  const state = encodeURIComponent(JSON.stringify(statePayload));
+
+  const params = new URLSearchParams({
+    client_id: GOOGLE_CLIENT_ID,
+    redirect_uri: redirectUri,
+    response_type: 'code',
+    scope: 'openid email profile',
+    state,
+    access_type: 'offline',
+    prompt: 'select_account',
+  });
+
+  return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+}
+
+/**
+ * Initiates the Google OAuth Sign-in flow via direct window navigation
  */
 export function initiateGoogleLogin(returnTo: string = '/dashboard'): void {
   if (typeof window === 'undefined') return;
-  window.location.href = `/api/auth/google?returnTo=${encodeURIComponent(returnTo)}`;
+  window.location.href = getDirectGoogleAuthUrl(returnTo);
 }
