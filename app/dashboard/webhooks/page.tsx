@@ -56,7 +56,7 @@ export default function WebhooksPage() {
     if (!user) { router.replace('/auth/login?redirect=/dashboard/webhooks'); return; }
     webhooksApi.list()
       .then((data) => {
-        setHooks(data);
+        setHooks(Array.isArray(data) ? data : (data as any)?.data ?? []);
         setLoadError(null);
       })
       .catch(() => {
@@ -75,11 +75,13 @@ export default function WebhooksPage() {
     setCreating(true);
     try {
       const newHook = await webhooksApi.create(values.url, selectedEvents);
-      setHooks((prev) => [newHook, ...prev]);
-      reset();
-      setSelectedEvents(['conversion.completed', 'conversion.failed']);
-      setShowCreate(false);
-      toast.success('Webhook endpoint registered');
+      if (newHook) {
+        setHooks((prev) => Array.isArray(prev) ? [newHook, ...prev] : [newHook]);
+        reset();
+        setSelectedEvents(['conversion.completed', 'conversion.failed']);
+        setShowCreate(false);
+        toast.success('Webhook endpoint registered');
+      }
     } catch (err) {
       toast.error(err instanceof ApiClientError ? err.message : 'Failed to register webhook');
     } finally {
@@ -92,7 +94,7 @@ export default function WebhooksPage() {
     setDeleting(id);
     try {
       await webhooksApi.delete(id);
-      setHooks((prev) => prev.filter((h) => h.id !== id));
+      setHooks((prev) => Array.isArray(prev) ? prev.filter((h) => h.id !== id) : []);
       toast.success('Webhook deleted');
     } catch (err) {
       toast.error(err instanceof ApiClientError ? err.message : 'Failed to delete webhook');
@@ -122,7 +124,7 @@ export default function WebhooksPage() {
               <h1 className="text-xl font-bold flex items-center gap-2">
                 <Webhook className="h-5 w-5" /> Webhooks
               </h1>
-              <p className="text-sm text-muted-foreground">{hooks.length} endpoint{hooks.length !== 1 ? 's' : ''} registered</p>
+              <p className="text-sm text-muted-foreground">{Array.isArray(hooks) ? hooks.length : 0} endpoint{(Array.isArray(hooks) ? hooks.length : 0) !== 1 ? 's' : ''} registered</p>
             </div>
           </div>
           <Button className="gap-2" onClick={() => setShowCreate(true)}>
@@ -151,7 +153,7 @@ export default function WebhooksPage() {
         </div>
 
         {/* List */}
-        {hooks.length === 0 && !loadError ? (
+        {(!Array.isArray(hooks) || hooks.length === 0) && !loadError ? (
           <Card>
             <CardContent className="py-16 text-center">
               <Webhook className="h-10 w-10 text-muted-foreground/30 mx-auto mb-4" />
@@ -163,7 +165,7 @@ export default function WebhooksPage() {
           </Card>
         ) : (
           <div className="space-y-3">
-            {hooks.map((hook) => (
+            {(Array.isArray(hooks) ? hooks : []).map((hook) => (
               <Card key={hook.id}>
                 <CardContent className="py-4 space-y-3">
                   <div className="flex items-start justify-between gap-3">

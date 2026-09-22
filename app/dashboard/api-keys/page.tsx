@@ -28,10 +28,13 @@ const createSchema = z.object({
 });
 type CreateValues = z.infer<typeof createSchema>;
 
-function relativeTime(iso: string) {
-  const diff = Date.now() - new Date(iso).getTime();
+function relativeTime(iso?: string | null) {
+  if (!iso) return 'recently';
+  const time = new Date(iso).getTime();
+  if (isNaN(time)) return 'recently';
+  const diff = Date.now() - time;
   const days = Math.floor(diff / 86_400_000);
-  if (days === 0) return 'today';
+  if (days <= 0) return 'today';
   if (days === 1) return 'yesterday';
   return `${days}d ago`;
 }
@@ -56,7 +59,11 @@ export default function ApiKeysPage() {
     if (!isInitialized) return;
     if (!user) { router.replace('/auth/login?redirect=/dashboard/api-keys'); return; }
     auth.listApiKeys()
-      .then(setKeys)
+      .then((data) => {
+        if (Array.isArray(data)) setKeys(data);
+        else if (data && Array.isArray((data as any).data)) setKeys((data as any).data);
+        else setKeys([]);
+      })
       .catch(() => setKeys([]))
       .finally(() => setLoading(false));
   }, [isInitialized, user, router]);
@@ -66,10 +73,13 @@ export default function ApiKeysPage() {
     setCreating(true);
     try {
       const result = await auth.createApiKey(values.name, ['conversions:read', 'conversions:write']);
-      setNewKey(result.key);
-      setKeys((prev) => [result, ...prev]);
-      reset();
-      setShowCreate(false);
+      if (result) {
+        setNewKey(result.key || null);
+        setKeys((prev) => Array.isArray(prev) ? [result, ...prev] : [result]);
+        reset();
+        setShowCreate(false);
+        toast.success('API key created');
+      }
     } catch (err) {
       toast.error((err as ApiClientError).message ?? 'Failed to create API key');
     } finally {
@@ -82,7 +92,7 @@ export default function ApiKeysPage() {
     setRevoking(id);
     try {
       await auth.revokeApiKey(id);
-      setKeys((prev) => prev.filter((k) => k.id !== id));
+      setKeys((prev) => Array.isArray(prev) ? prev.filter((k) => k.id !== id) : []);
       toast.success('API key revoked');
     } catch (err) {
       toast.error((err as ApiClientError).message ?? 'Failed to revoke key');
@@ -91,16 +101,32 @@ export default function ApiKeysPage() {
     }
   };
 
-  const copyKey = (key: string) => {
-    navigator.clipboard.writeText(key);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-    toast.success('Copied to clipboard');
+  const copyKey = async (key: string | null) => {
+    if (!key) return;
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(key);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = key;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+      toast.success('Copied to clipboard');
+    } catch {
+      toast.error('Failed to copy key');
+    }
   };
 
   if (!user || loading) {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
   }
+
+  const activeCount = Array.isArray(keys) ? keys.filter(k => !k.revokedAt).length : 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -115,7 +141,7 @@ export default function ApiKeysPage() {
               <h1 className="text-xl font-bold flex items-center gap-2">
                 <Key className="h-5 w-5" /> API Keys
               </h1>
-              <p className="text-sm text-muted-foreground">{keys.filter(k => !k.revokedAt).length} active key{keys.filter(k => !k.revokedAt).length !== 1 ? 's' : ''}</p>
+              <p className="text-sm text-muted-foreground">{activeCount} active key{activeCount !== 1 ? 's' : ''}</p>
             </div>
           </div>
           <Button className="gap-2" onClick={() => setShowCreate(true)}>
@@ -165,7 +191,7 @@ export default function ApiKeysPage() {
         </div>
 
         {/* Keys list */}
-        {keys.length === 0 ? (
+        {(!Array.isArray(keys) || keys.length === 0) ? (
           <Card>
             <CardContent className="py-16 text-center">
               <Key className="h-10 w-10 text-muted-foreground/30 mx-auto mb-4" />
@@ -177,7 +203,7 @@ export default function ApiKeysPage() {
           </Card>
         ) : (
           <div className="space-y-3">
-            {keys.map((key) => (
+            {(Array.isArray(keys) ? keys : []).map((key) => (
               <Card key={key.id} className={key.revokedAt ? 'opacity-50' : ''}>
                 <CardContent className="py-4 flex items-center gap-4">
                   <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -195,7 +221,7 @@ export default function ApiKeysPage() {
                     <p className="text-xs text-muted-foreground mt-0.5">
                       Created {relativeTime(key.createdAt)}
                       {key.lastUsedAt && ` · Last used ${relativeTime(key.lastUsedAt)}`}
-                      {key.expiresAt && ` · Expires ${new Date(key.expiresAt).toLocaleDateString()}`}
+                      {key.expiresAt && !isNaN(new Date(key.expiresAt).getTime()) && ` · Expires ${new Date(key.expiresAt).toLocaleDateString()}`}
                     </p>
                   </div>
                   {!key.revokedAt && (
@@ -229,7 +255,7 @@ export default function ApiKeysPage() {
           <form onSubmit={handleSubmit(handleCreate)} className="space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="keyname">Key name</Label>
-              <Input id="keyname" placeholder="e.g. production-server, ci-pipeline" {...register('name')} autoFocus />
+              <Input id="keyname" placeholder="e.g. production-server, ci-pipeline" {...register('name')} />
               {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
             </div>
             <div className="flex gap-3 pt-2">

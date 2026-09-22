@@ -292,13 +292,18 @@ export const auth = {
 
   async listApiKeys(): Promise<ApiKey[]> {
     try {
-      return await request<ApiKey[]>('GET', '/auth/api-keys');
+      const res = await request<any>('GET', '/auth/api-keys');
+      if (Array.isArray(res)) return res;
+      if (Array.isArray(res?.data)) return res.data;
+      if (Array.isArray(res?.keys)) return res.keys;
+      return [];
     } catch (err) {
       if (typeof window !== 'undefined') {
         const stored = localStorage.getItem('fc_api_keys');
         if (stored) {
           try {
-            return JSON.parse(stored) as ApiKey[];
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) return parsed;
           } catch {}
         }
         return [];
@@ -313,7 +318,9 @@ export const auth = {
     expiresAt?: string,
   ): Promise<ApiKey & { key: string }> {
     try {
-      return await request('POST', '/auth/api-keys', { body: { name, permissions, expiresAt } });
+      const res = await request<any>('POST', '/auth/api-keys', { body: { name, permissions, expiresAt } });
+      const keyObj: ApiKey & { key: string } = res?.data ?? res;
+      return keyObj;
     } catch (err) {
       if (typeof window !== 'undefined') {
         const id = 'key_' + Math.random().toString(36).substring(2, 10);
@@ -332,7 +339,13 @@ export const auth = {
           key: secret,
         };
         const stored = localStorage.getItem('fc_api_keys');
-        const list: (ApiKey & { key?: string })[] = stored ? JSON.parse(stored) : [];
+        let list: (ApiKey & { key?: string })[] = [];
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) list = parsed;
+          } catch {}
+        }
         list.unshift(newKey);
         localStorage.setItem('fc_api_keys', JSON.stringify(list));
         return newKey;
@@ -448,12 +461,18 @@ export interface WebhookEndpoint {
 export const webhooksApi = {
   async list(): Promise<WebhookEndpoint[]> {
     try {
-      return await request<WebhookEndpoint[]>('GET', '/webhooks');
+      const res = await request<any>('GET', '/webhooks');
+      if (Array.isArray(res)) return res;
+      if (Array.isArray(res?.data)) return res.data;
+      return [];
     } catch (err) {
       if (typeof window !== 'undefined') {
         const stored = localStorage.getItem('fc_webhooks');
         if (stored) {
-          try { return JSON.parse(stored) as WebhookEndpoint[]; } catch {}
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) return parsed;
+          } catch {}
         }
         return [];
       }
@@ -463,7 +482,8 @@ export const webhooksApi = {
 
   async create(url: string, events: string[]): Promise<WebhookEndpoint> {
     try {
-      return await request<WebhookEndpoint>('POST', '/webhooks', { body: { url, events } });
+      const res = await request<any>('POST', '/webhooks', { body: { url, events } });
+      return res?.data ?? res;
     } catch (err) {
       if (typeof window !== 'undefined') {
         const id = 'wh_' + Math.random().toString(36).substring(2, 10);
@@ -477,7 +497,13 @@ export const webhooksApi = {
           lastStatus: null,
         };
         const stored = localStorage.getItem('fc_webhooks');
-        const list: WebhookEndpoint[] = stored ? JSON.parse(stored) : [];
+        let list: WebhookEndpoint[] = [];
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) list = parsed;
+          } catch {}
+        }
         list.unshift(newHook);
         localStorage.setItem('fc_webhooks', JSON.stringify(list));
         return newHook;
