@@ -27,7 +27,7 @@ import { jsPDF } from 'jspdf';
 import { createZipBlob } from './archive-helper';
 
 const SUPPORTED_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'svg', 'gif']);
-const TARGET_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'pdf', 'zip']);
+const TARGET_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'pdf']);
 
 const SUPPORTED_DATA_PAIRS = new Set([
   'json:csv',
@@ -407,11 +407,12 @@ async function convertImageToPdf(file: File): Promise<Blob> {
 
   const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
 
-  // Standard PDF with dimensions matching image aspect ratio
+  // Standard PDF with dimensions matching image aspect ratio 1:1
   const pdf = new jsPDF({
     orientation: width > height ? 'landscape' : 'portrait',
-    unit: 'pt',
+    unit: 'px',
     format: [width, height],
+    hotfixes: ['px_scaling'],
   });
 
   pdf.addImage(dataUrl, 'JPEG', 0, 0, width, height);

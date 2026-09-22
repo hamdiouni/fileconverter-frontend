@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import {
   Upload, X, FileText, CheckCircle, AlertCircle, Download,
   ArrowRight, Loader2, RefreshCw, Zap, Settings2, Info,
-  FileUp, Youtube, Sparkles,
+  Sparkles,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -27,14 +27,12 @@ import {
 import {
   TooltipProvider,
 } from '@/components/ui/tooltip';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { uploads, conversions, ApiClientError, type ConversionJob } from '@/lib/api-client';
 import { getCategoryData, getAllCategoryIds } from '@/lib/conversions';
 import { canConvertClientSide, convertClientSide } from '@/lib/client-converter';
 import { AdBanner } from '@/components/ads/ad-banner';
 import { MonetizationGuideDialog } from '@/components/ads/monetization-guide-dialog';
-import { YouTubeConverter } from '@/components/convert/youtube-converter';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -67,10 +65,7 @@ function getTargetFormats(sourceExt: string): string[] {
     if (entry) entry.conversions.forEach((c) => targets.add(c.targetFormat));
   }
 
-  // Always allow ZIP archive compression for any file format
-  targets.add('ZIP');
-
-  // If source is an image format, ensure PDF is always an available target
+  // If source is an image format, ensure PDF is an available target (e.g. PNG to PDF)
   const imageExts = new Set(['PNG', 'JPG', 'JPEG', 'WEBP', 'BMP', 'ICO', 'TIFF', 'GIF', 'SVG', 'PSD']);
   if (imageExts.has(ext)) {
     targets.add('PDF');
@@ -220,6 +215,18 @@ function OptionsPanel({ options, onChange, targetFormat }: {
 async function triggerBlobDownload(url: string, filename: string, setDownloading: (v: boolean) => void) {
   setDownloading(true);
   try {
+    // If it's already an in-browser blob: URL, download it directly without re-fetching
+    if (url.startsWith('blob:')) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      return;
+    }
+
+    // Remote URLs (MinIO / S3): fetch as blob first to avoid cross-origin anchor navigation
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Download failed: HTTP ${res.status}`);
     const blob = await res.blob();
@@ -233,7 +240,6 @@ async function triggerBlobDownload(url: string, filename: string, setDownloading
     setTimeout(() => URL.revokeObjectURL(objectUrl), 10_000);
   } catch (err) {
     console.error('Download error:', err);
-    // Fallback: open in new tab
     window.open(url, '_blank', 'noopener,noreferrer');
   } finally {
     setDownloading(false);
@@ -369,6 +375,48 @@ function ConvertContent() {
     const targetExt = targetFormat.toLowerCase();
     const canLocal = canConvertClientSide(sourceExt, targetExt);
 
+    // ── 1. Authentic in-browser conversion (Images, PDF from images, Data formats) ─
+    if (canLocal) {
+      try {
+        setState((s) => ({ ...s, stage: 'processing', uploadPct: 100 }));
+        toast.loading('Converting file…', { id: toastId });
+
+        // Short smooth transition
+        await new Promise((r) => setTimeout(r, 300));
+
+        const result = await convertClientSide(file, targetExt, {
+          quality: options.quality,
+          preserveMetadata: options.preserveMetadata,
+        });
+
+        setState({
+          stage: 'completed',
+          uploadPct: 100,
+          job: {
+            id: 'local-' + Math.random().toString(36).slice(2, 9),
+            sourceFormat: sourceExt,
+            targetFormat: targetExt,
+            status: 'completed',
+            progress: 100,
+          } as any,
+          downloadUrl: result.url,
+          downloadFilename: result.filename,
+          isClientSide: true,
+          error: null,
+        });
+
+        toast.success(`Converted to ${targetFormat.toUpperCase()} — ready to download!`, { id: toastId });
+        return;
+      } catch (localErr: any) {
+        console.error('Client-side conversion error:', localErr);
+        const msg = localErr.message || 'Client conversion failed.';
+        setState({ stage: 'error', uploadPct: 0, job: null, downloadUrl: null, error: msg });
+        toast.error(msg, { id: toastId });
+        return;
+      }
+    }
+
+    // ── 2. Cloud server conversion pipeline (Audio, Video, Complex Documents) ──────
     try {
       // 1 — request presigned URL
       const { uploadId, presignedUrl, fields } = await uploads.requestPresignedUrl(
@@ -383,7 +431,7 @@ function ConvertContent() {
       // 3 — confirm
       await uploads.confirmUpload(uploadId);
 
-      toast.loading('Converting…', { id: toastId });
+      toast.loading('Converting on server…', { id: toastId });
       setState((s) => ({ ...s, stage: 'processing', uploadPct: 100 }));
 
       // 4 — submit conversion with options
@@ -419,53 +467,10 @@ function ConvertContent() {
       }
       throw new Error(finalJob.errorMessage ?? 'Conversion failed on server.');
     } catch (backendErr: any) {
-      console.warn('Backend conversion unavailable or failed, checking client-side converter:', backendErr);
-
-      // Fallback: If this format can be converted client-side directly in the browser
-      if (canLocal) {
-        try {
-          toast.loading('Processing instant in-browser conversion…', { id: toastId });
-          setState((s) => ({ ...s, stage: 'processing', uploadPct: 100 }));
-
-          // Short visual transition
-          await new Promise((r) => setTimeout(r, 400));
-
-          const result = await convertClientSide(file, targetExt, {
-            quality: options.quality,
-            preserveMetadata: options.preserveMetadata,
-          });
-
-          setState({
-            stage: 'completed',
-            uploadPct: 100,
-            job: {
-              id: 'local-' + Math.random().toString(36).slice(2, 9),
-              sourceFormat: sourceExt,
-              targetFormat: targetExt,
-              status: 'completed',
-              progress: 100,
-            } as any,
-            downloadUrl: result.url,
-            downloadFilename: result.filename,
-            isClientSide: true,
-            error: null,
-          });
-
-          toast.success(`Converted to ${targetFormat.toUpperCase()} instantly in browser!`, { id: toastId });
-          return;
-        } catch (localErr: any) {
-          console.error('Client-side conversion error:', localErr);
-          const msg = localErr.message || 'Client conversion failed.';
-          setState({ stage: 'error', uploadPct: 0, job: null, downloadUrl: null, error: msg });
-          toast.error(msg, { id: toastId });
-          return;
-        }
-      }
-
-      // If cannot convert client-side and backend failed
+      console.warn('Backend conversion failed:', backendErr);
       const msg = backendErr instanceof ApiClientError
         ? backendErr.message
-        : backendErr?.message ?? 'Conversion server unavailable. Please deploy the backend or convert a standard format.';
+        : backendErr?.message ?? 'Conversion server unavailable. Please deploy the backend workers.';
       setState({ stage: 'error', uploadPct: 0, job: null, downloadUrl: null, error: msg });
       toast.error(msg, { id: toastId });
     }
@@ -483,9 +488,10 @@ function ConvertContent() {
             <Badge variant="outline">Free &amp; Instant Converter</Badge>
             <MonetizationGuideDialog />
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Convert Files &amp; Media</h1>
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Convert Your Files</h1>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Convert documents, images to PDF, archive to ZIP, and extract audio/video from media links instantly.
+            Upload any file, choose your output format, and download in seconds.
+            2,000+ conversion types supported across Images, Documents, Audio, and Video.
           </p>
         </div>
       </section>
@@ -495,142 +501,151 @@ function ConvertContent() {
         {/* Left Skyscraper Ad (Desktop) */}
         <AdBanner position="left" />
 
-        {/* Main Content Area */}
-        <main className="flex-1 max-w-3xl w-full">
-          <Tabs defaultValue="files" className="w-full">
-            <TabsList className="grid grid-cols-2 w-full max-w-md mx-auto mb-8 h-11 p-1 bg-muted/70 rounded-xl">
-              <TabsTrigger value="files" className="gap-2 rounded-lg font-medium text-xs sm:text-sm">
-                <FileUp className="w-4 h-4 text-primary" />
-                <span>File Converter</span>
-              </TabsTrigger>
-              <TabsTrigger value="youtube" className="gap-2 rounded-lg font-medium text-xs sm:text-sm">
-                <Youtube className="w-4 h-4 text-red-500" />
-                <span>YouTube / Video URL</span>
-              </TabsTrigger>
-            </TabsList>
+        {/* Main Converter Card */}
+        <main className="flex-1 max-w-2xl w-full space-y-6">
+          {/* Step 1 */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">1</div>
+              <span className="font-medium">Select your file</span>
+            </div>
+            <DropZone
+              file={file}
+              onFile={(f) => {
+                setFile(f);
+                setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null });
+              }}
+              onClear={handleClear}
+            />
+          </div>
 
-            {/* TAB 1: File Converter */}
-            <TabsContent value="files" className="space-y-6">
-              {/* Step 1 */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">1</div>
-                  <span className="font-medium">Select your file</span>
-                </div>
-                <DropZone
-                  file={file}
-                  onFile={(f) => {
-                    setFile(f);
-                    setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null });
-                  }}
-                  onClear={handleClear}
-                />
+          {/* Step 2 */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
+                ${sourceExt ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                2
               </div>
+              <span className={`font-medium ${!sourceExt ? 'text-muted-foreground' : ''}`}>
+                Choose output format
+              </span>
+            </div>
 
-              {/* Step 2 */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
-                    ${sourceExt ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                    2
-                  </div>
-                  <span className={`font-medium ${!sourceExt ? 'text-muted-foreground' : ''}`}>
-                    Choose output format
-                  </span>
-                </div>
-
-                <div className="flex gap-3">
-                  <div className="flex items-center gap-2 px-4 h-10 rounded-md border bg-muted text-sm font-mono font-semibold min-w-[100px] justify-center">
-                    {sourceExt || <span className="text-muted-foreground text-xs">source</span>}
-                  </div>
-                  <div className="flex items-center text-muted-foreground">
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                  <Select
-                    value={targetFormat}
-                    onValueChange={setTargetFormat}
-                    disabled={!sourceExt || targetFormats.length === 0}
-                  >
-                    <SelectTrigger className="flex-1 h-10 font-mono font-semibold">
-                      <SelectValue placeholder={
-                        !sourceExt ? 'Upload a file first'
-                        : targetFormats.length === 0 ? 'No conversions available'
-                        : 'Select format…'
-                      } />
-                    </SelectTrigger>
-                    <SelectContent className="max-h-72">
-                      {targetFormats.map((fmt) => (
-                        <SelectItem key={fmt} value={fmt} className="font-mono">{fmt}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {sourceExt && targetFormats.length > 0 && (
-                  <p className="text-xs text-muted-foreground pl-0.5">
-                    {targetFormats.length} output formats available for{' '}
-                    <span className="font-mono font-semibold">{sourceExt}</span>
-                  </p>
-                )}
-
-                {/* Options panel — shown only when a target is selected */}
-                {targetFormat && (
-                  <OptionsPanel
-                    options={options}
-                    onChange={setOptions}
-                    targetFormat={targetFormat}
-                  />
-                )}
+            <div className="flex gap-3">
+              <div className="flex items-center gap-2 px-4 h-10 rounded-md border bg-muted text-sm font-mono font-semibold min-w-[100px] justify-center">
+                {sourceExt || <span className="text-muted-foreground text-xs">source</span>}
               </div>
+              <div className="flex items-center text-muted-foreground">
+                <ArrowRight className="h-4 w-4" />
+              </div>
+              <Select
+                value={targetFormat}
+                onValueChange={setTargetFormat}
+                disabled={!sourceExt || targetFormats.length === 0}
+              >
+                <SelectTrigger className="flex-1 h-10 font-mono font-semibold">
+                  <SelectValue placeholder={
+                    !sourceExt ? 'Upload a file first'
+                    : targetFormats.length === 0 ? 'No conversions available'
+                    : 'Select format…'
+                  } />
+                </SelectTrigger>
+                <SelectContent className="max-h-72">
+                  {targetFormats.map((fmt) => (
+                    <SelectItem key={fmt} value={fmt} className="font-mono">{fmt}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-              {/* Step 3 */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
-                    ${canConvert ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                    3
-                  </div>
-                  <span className={`font-medium ${!canConvert && !isConverting ? 'text-muted-foreground' : ''}`}>
-                    Convert &amp; download
-                  </span>
-                </div>
+            {sourceExt && targetFormats.length > 0 && (
+              <p className="text-xs text-muted-foreground pl-0.5">
+                {targetFormats.length} output formats available for{' '}
+                <span className="font-mono font-semibold">{sourceExt}</span>
+              </p>
+            )}
 
-                <Button
-                  className="w-full h-12 text-base gap-2"
-                  disabled={!canConvert || isConverting}
-                  onClick={handleConvert}
+            {/* Options panel — shown only when a target is selected */}
+            {targetFormat && (
+              <OptionsPanel
+                options={options}
+                onChange={setOptions}
+                targetFormat={targetFormat}
+              />
+            )}
+          </div>
+
+          {/* Step 3 */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
+                ${canConvert ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                3
+              </div>
+              <span className={`font-medium ${!canConvert && !isConverting ? 'text-muted-foreground' : ''}`}>
+                Convert &amp; download
+              </span>
+            </div>
+
+            <Button
+              className="w-full h-12 text-base gap-2"
+              disabled={!canConvert || isConverting}
+              onClick={handleConvert}
+            >
+              {isConverting
+                ? <><Loader2 className="h-5 w-5 animate-spin" />{state.stage === 'uploading' ? 'Uploading…' : 'Converting…'}</>
+                : <><Zap className="h-5 w-5" />{targetFormat ? `Convert to ${targetFormat}` : 'Convert'}</>}
+            </Button>
+
+            {state.stage === 'error' && (
+              <Button variant="outline" className="w-full gap-2"
+                onClick={() => setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null })}>
+                <RefreshCw className="h-4 w-4" /> Try again
+              </Button>
+            )}
+          </div>
+
+          <StatusCard state={state} />
+
+          {state.stage === 'idle' && (
+            <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-4 py-3">
+              <Info className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+              <span>
+                Free plan: 1,000 conversions/day.{' '}
+                <Link href="/pricing" className="text-primary hover:underline">View all plans.</Link>
+              </span>
+            </div>
+          )}
+
+          {/* ── In-Page Bottom Ad Banner Section ── */}
+          <section className="pt-6 border-t">
+            <div className="flex flex-col items-center justify-center text-center space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground bg-muted px-2.5 py-0.5 rounded">
+                Sponsored Advertisement
+              </span>
+              <div className="w-full min-h-[90px] p-4 rounded-xl border border-dashed border-border bg-card/60 flex items-center justify-center">
+                <a
+                  href="https://workspace.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full text-foreground hover:opacity-90 transition-opacity"
                 >
-                  {isConverting
-                    ? <><Loader2 className="h-5 w-5 animate-spin" />{state.stage === 'uploading' ? 'Uploading…' : 'Converting…'}</>
-                    : <><Zap className="h-5 w-5" />{targetFormat ? `Convert to ${targetFormat}` : 'Convert'}</>}
-                </Button>
-
-                {state.stage === 'error' && (
-                  <Button variant="outline" className="w-full gap-2"
-                    onClick={() => setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null })}>
-                    <RefreshCw className="h-4 w-4" /> Try again
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                    <div className="text-left">
+                      <p className="font-semibold text-sm">High-Speed Cloud Processing &amp; Storage</p>
+                      <p className="text-xs text-muted-foreground">Convert and manage thousands of files with automated daily backups.</p>
+                    </div>
+                  </div>
+                  <Button size="sm" variant="default" className="shrink-0 text-xs gap-1.5" asChild>
+                    <span>Learn More</span>
                   </Button>
-                )}
+                </a>
               </div>
-
-              <StatusCard state={state} />
-
-              {state.stage === 'idle' && (
-                <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-4 py-3">
-                  <Info className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
-                  <span>
-                    Free plan: 1,000 conversions/day.{' '}
-                    <Link href="/pricing" className="text-primary hover:underline">View all plans.</Link>
-                  </span>
-                </div>
-              )}
-            </TabsContent>
-
-            {/* TAB 2: YouTube / Video URL Converter */}
-            <TabsContent value="youtube" className="space-y-6">
-              <YouTubeConverter />
-            </TabsContent>
-          </Tabs>
+            </div>
+          </section>
         </main>
 
         {/* Right Skyscraper Ad (Desktop) */}
@@ -644,7 +659,7 @@ function ConvertContent() {
             {[
               { icon: '🔒', title: 'Private & Secure', desc: 'In-browser or deleted after 24 hours' },
               { icon: '⚡', title: 'Lightning Fast',   desc: 'Average under 3 seconds' },
-              { icon: '🌐', title: 'Universal Format', desc: 'Images, PDFs, ZIP, Audio, Video' },
+              { icon: '🌐', title: 'Universal Format', desc: 'Images, Documents, Audio, Video' },
             ].map((f) => (
               <div key={f.title} className="space-y-1.5">
                 <div className="text-2xl">{f.icon}</div>

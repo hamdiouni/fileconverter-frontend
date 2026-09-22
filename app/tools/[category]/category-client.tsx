@@ -14,6 +14,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { getCategoryData, type FormatEntry } from '@/lib/conversions';
 import { CONVERSION_CATEGORIES } from '@/lib/constants';
+import { YouTubeConverter } from '@/components/convert/youtube-converter';
 
 const CATEGORY_COLORS: Record<string, string> = {
   images:        'bg-blue-500/10 text-blue-600',
@@ -133,6 +134,13 @@ export function CategoryPageClient({ category }: { category: string }) {
 
       <section className="py-12">
         <div className="container mx-auto px-4">
+          {/* YouTube / Media URL Converter specifically for Video and Audio tools */}
+          {(category === 'video' || category === 'audio') && (
+            <div className="mb-12">
+              <YouTubeConverter />
+            </div>
+          )}
+
           <div className="relative max-w-lg mb-10">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input type="search" placeholder={`Search ${data.formats.length} formats…`}
