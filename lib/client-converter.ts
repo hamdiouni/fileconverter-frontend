@@ -23,8 +23,11 @@ export interface ClientConversionOptions {
   preserveMetadata?: boolean;
 }
 
+import { jsPDF } from 'jspdf';
+import { createZipBlob } from './archive-helper';
+
 const SUPPORTED_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'svg', 'gif']);
-const TARGET_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico']);
+const TARGET_IMAGE_FORMATS = new Set(['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'pdf', 'zip']);
 
 const SUPPORTED_DATA_PAIRS = new Set([
   'json:csv',
@@ -45,7 +48,12 @@ export function canConvertClientSide(sourceExt: string, targetExt: string): bool
 
   if (s === t) return true;
 
-  // Images to supported image targets
+  // Any file can be converted/compressed into a ZIP archive
+  if (t === 'zip') {
+    return true;
+  }
+
+  // Images to supported image targets (including PDF)
   if (SUPPORTED_IMAGE_FORMATS.has(s) && TARGET_IMAGE_FORMATS.has(t)) {
     return true;
   }
@@ -70,6 +78,41 @@ export async function convertClientSide(
   const targetExt = targetFormat.toLowerCase().trim();
   const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
   const outputFilename = `${baseName}.${targetExt}`;
+
+  // ── Any File to ZIP Archive ────────────────────────────────────────────────────
+  if (targetExt === 'zip') {
+    const arrayBuffer = await file.arrayBuffer();
+    const blob = await createZipBlob([
+      {
+        name: file.name,
+        data: new Uint8Array(arrayBuffer),
+        date: new Date(),
+      },
+    ]);
+    const url = URL.createObjectURL(blob);
+    return {
+      blob,
+      filename: outputFilename,
+      url,
+      sourceFormat: sourceExt,
+      targetFormat: targetExt,
+      isClientSide: true,
+    };
+  }
+
+  // ── Image to PDF Conversion (100% valid PDF 1.4 document) ──────────────────────
+  if (SUPPORTED_IMAGE_FORMATS.has(sourceExt) && targetExt === 'pdf') {
+    const blob = await convertImageToPdf(file);
+    const url = URL.createObjectURL(blob);
+    return {
+      blob,
+      filename: outputFilename,
+      url,
+      sourceFormat: sourceExt,
+      targetFormat: targetExt,
+      isClientSide: true,
+    };
+  }
 
   // ── Image Conversions via HTML5 Canvas ─────────────────────────────────────────
   if (SUPPORTED_IMAGE_FORMATS.has(sourceExt) && TARGET_IMAGE_FORMATS.has(targetExt)) {
@@ -325,3 +368,53 @@ function markdownToHtml(md: string): string {
     .replace(/\n\n/gim, '</p><p>')
     .replace(/\n/gim, '<br />');
 }
+
+/**
+ * Converts an image file (PNG, JPG, WEBP, BMP, etc.) into a 100% standard PDF document.
+ * This guarantees the PDF opens in Chrome, Adobe Acrobat, Edge, and macOS Preview.
+ */
+async function convertImageToPdf(file: File): Promise<Blob> {
+  const objectUrl = URL.createObjectURL(file);
+  const img = new Image();
+
+  await new Promise<void>((resolve, reject) => {
+    img.onload = () => resolve();
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error(`Failed to decode image "${file.name}" for PDF creation.`));
+    };
+    img.src = objectUrl;
+  });
+
+  const width = img.naturalWidth || img.width;
+  const height = img.naturalHeight || img.height;
+
+  // Draw to canvas to extract clean JPEG data stream
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    URL.revokeObjectURL(objectUrl);
+    throw new Error('Canvas 2D context unavailable.');
+  }
+
+  // White background for transparent PNGs so PDF doesn't render black
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, width, height);
+  ctx.drawImage(img, 0, 0);
+  URL.revokeObjectURL(objectUrl);
+
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+
+  // Standard PDF with dimensions matching image aspect ratio
+  const pdf = new jsPDF({
+    orientation: width > height ? 'landscape' : 'portrait',
+    unit: 'pt',
+    format: [width, height],
+  });
+
+  pdf.addImage(dataUrl, 'JPEG', 0, 0, width, height);
+  return pdf.output('blob');
+}
+

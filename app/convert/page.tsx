@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import {
   Upload, X, FileText, CheckCircle, AlertCircle, Download,
   ArrowRight, Loader2, RefreshCw, Zap, Settings2, Info,
+  FileUp, Youtube, Sparkles,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -26,10 +27,14 @@ import {
 import {
   TooltipProvider,
 } from '@/components/ui/tooltip';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { uploads, conversions, ApiClientError, type ConversionJob } from '@/lib/api-client';
 import { getCategoryData, getAllCategoryIds } from '@/lib/conversions';
 import { canConvertClientSide, convertClientSide } from '@/lib/client-converter';
+import { AdBanner } from '@/components/ads/ad-banner';
+import { MonetizationGuideDialog } from '@/components/ads/monetization-guide-dialog';
+import { YouTubeConverter } from '@/components/convert/youtube-converter';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -61,6 +66,19 @@ function getTargetFormats(sourceExt: string): string[] {
     const entry = cat.formats.find((f) => f.name === ext);
     if (entry) entry.conversions.forEach((c) => targets.add(c.targetFormat));
   }
+
+  // Always allow ZIP archive compression for any file format
+  targets.add('ZIP');
+
+  // If source is an image format, ensure PDF is always an available target
+  const imageExts = new Set(['PNG', 'JPG', 'JPEG', 'WEBP', 'BMP', 'ICO', 'TIFF', 'GIF', 'SVG', 'PSD']);
+  if (imageExts.has(ext)) {
+    targets.add('PDF');
+  }
+
+  // Remove self-conversion
+  targets.delete(ext);
+
   return Array.from(targets).sort();
 }
 
@@ -457,148 +475,176 @@ function ConvertContent() {
   const canConvert   = !!file && !!targetFormat && !isConverting;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative pb-28">
       {/* Hero */}
-      <section className="py-14 border-b bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
-        <div className="container mx-auto px-4 text-center">
-          <Badge variant="outline" className="mb-4">Free converter</Badge>
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">Convert Your Files</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Upload any file, choose your output format, and download in seconds.
-            2,000+ conversion types supported.
+      <section className="py-12 border-b bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
+        <div className="container mx-auto px-4 text-center space-y-3">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
+            <Badge variant="outline">Free &amp; Instant Converter</Badge>
+            <MonetizationGuideDialog />
+          </div>
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Convert Files &amp; Media</h1>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Convert documents, images to PDF, archive to ZIP, and extract audio/video from media links instantly.
           </p>
         </div>
       </section>
 
-      {/* Converter */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto space-y-6">
+      {/* Main Grid with Left & Right Ad Skyscraper Sidebars */}
+      <div className="max-w-[1600px] mx-auto px-4 py-8 flex justify-center items-start gap-6">
+        {/* Left Skyscraper Ad (Desktop) */}
+        <AdBanner position="left" />
 
-            {/* Step 1 */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">1</div>
-                <span className="font-medium">Select your file</span>
-              </div>
-              <DropZone
-                file={file}
-                onFile={(f) => {
-                  setFile(f);
-                  setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null });
-                }}
-                onClear={handleClear}
-              />
-            </div>
+        {/* Main Content Area */}
+        <main className="flex-1 max-w-3xl w-full">
+          <Tabs defaultValue="files" className="w-full">
+            <TabsList className="grid grid-cols-2 w-full max-w-md mx-auto mb-8 h-11 p-1 bg-muted/70 rounded-xl">
+              <TabsTrigger value="files" className="gap-2 rounded-lg font-medium text-xs sm:text-sm">
+                <FileUp className="w-4 h-4 text-primary" />
+                <span>File Converter</span>
+              </TabsTrigger>
+              <TabsTrigger value="youtube" className="gap-2 rounded-lg font-medium text-xs sm:text-sm">
+                <Youtube className="w-4 h-4 text-red-500" />
+                <span>YouTube / Video URL</span>
+              </TabsTrigger>
+            </TabsList>
 
-            {/* Step 2 */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
-                  ${sourceExt ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                  2
+            {/* TAB 1: File Converter */}
+            <TabsContent value="files" className="space-y-6">
+              {/* Step 1 */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">1</div>
+                  <span className="font-medium">Select your file</span>
                 </div>
-                <span className={`font-medium ${!sourceExt ? 'text-muted-foreground' : ''}`}>
-                  Choose output format
-                </span>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex items-center gap-2 px-4 h-10 rounded-md border bg-muted text-sm font-mono font-semibold min-w-[100px] justify-center">
-                  {sourceExt || <span className="text-muted-foreground text-xs">source</span>}
-                </div>
-                <div className="flex items-center text-muted-foreground">
-                  <ArrowRight className="h-4 w-4" />
-                </div>
-                <Select
-                  value={targetFormat}
-                  onValueChange={setTargetFormat}
-                  disabled={!sourceExt || targetFormats.length === 0}
-                >
-                  <SelectTrigger className="flex-1 h-10 font-mono font-semibold">
-                    <SelectValue placeholder={
-                      !sourceExt ? 'Upload a file first'
-                      : targetFormats.length === 0 ? 'No conversions available'
-                      : 'Select format…'
-                    } />
-                  </SelectTrigger>
-                  <SelectContent className="max-h-72">
-                    {targetFormats.map((fmt) => (
-                      <SelectItem key={fmt} value={fmt} className="font-mono">{fmt}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {sourceExt && targetFormats.length > 0 && (
-                <p className="text-xs text-muted-foreground pl-0.5">
-                  {targetFormats.length} output formats available for{' '}
-                  <span className="font-mono font-semibold">{sourceExt}</span>
-                </p>
-              )}
-
-              {/* Options panel — shown only when a target is selected */}
-              {targetFormat && (
-                <OptionsPanel
-                  options={options}
-                  onChange={setOptions}
-                  targetFormat={targetFormat}
+                <DropZone
+                  file={file}
+                  onFile={(f) => {
+                    setFile(f);
+                    setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null });
+                  }}
+                  onClear={handleClear}
                 />
-              )}
-            </div>
+              </div>
 
-            {/* Step 3 */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
-                  ${canConvert ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                  3
+              {/* Step 2 */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
+                    ${sourceExt ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                    2
+                  </div>
+                  <span className={`font-medium ${!sourceExt ? 'text-muted-foreground' : ''}`}>
+                    Choose output format
+                  </span>
                 </div>
-                <span className={`font-medium ${!canConvert && !isConverting ? 'text-muted-foreground' : ''}`}>
-                  Convert &amp; download
-                </span>
+
+                <div className="flex gap-3">
+                  <div className="flex items-center gap-2 px-4 h-10 rounded-md border bg-muted text-sm font-mono font-semibold min-w-[100px] justify-center">
+                    {sourceExt || <span className="text-muted-foreground text-xs">source</span>}
+                  </div>
+                  <div className="flex items-center text-muted-foreground">
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                  <Select
+                    value={targetFormat}
+                    onValueChange={setTargetFormat}
+                    disabled={!sourceExt || targetFormats.length === 0}
+                  >
+                    <SelectTrigger className="flex-1 h-10 font-mono font-semibold">
+                      <SelectValue placeholder={
+                        !sourceExt ? 'Upload a file first'
+                        : targetFormats.length === 0 ? 'No conversions available'
+                        : 'Select format…'
+                      } />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-72">
+                      {targetFormats.map((fmt) => (
+                        <SelectItem key={fmt} value={fmt} className="font-mono">{fmt}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {sourceExt && targetFormats.length > 0 && (
+                  <p className="text-xs text-muted-foreground pl-0.5">
+                    {targetFormats.length} output formats available for{' '}
+                    <span className="font-mono font-semibold">{sourceExt}</span>
+                  </p>
+                )}
+
+                {/* Options panel — shown only when a target is selected */}
+                {targetFormat && (
+                  <OptionsPanel
+                    options={options}
+                    onChange={setOptions}
+                    targetFormat={targetFormat}
+                  />
+                )}
               </div>
 
-              <Button
-                className="w-full h-12 text-base gap-2"
-                disabled={!canConvert || isConverting}
-                onClick={handleConvert}
-              >
-                {isConverting
-                  ? <><Loader2 className="h-5 w-5 animate-spin" />{state.stage === 'uploading' ? 'Uploading…' : 'Converting…'}</>
-                  : <><Zap className="h-5 w-5" />{targetFormat ? `Convert to ${targetFormat}` : 'Convert'}</>}
-              </Button>
+              {/* Step 3 */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className={`w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold
+                    ${canConvert ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                    3
+                  </div>
+                  <span className={`font-medium ${!canConvert && !isConverting ? 'text-muted-foreground' : ''}`}>
+                    Convert &amp; download
+                  </span>
+                </div>
 
-              {state.stage === 'error' && (
-                <Button variant="outline" className="w-full gap-2"
-                  onClick={() => setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null })}>
-                  <RefreshCw className="h-4 w-4" /> Try again
+                <Button
+                  className="w-full h-12 text-base gap-2"
+                  disabled={!canConvert || isConverting}
+                  onClick={handleConvert}
+                >
+                  {isConverting
+                    ? <><Loader2 className="h-5 w-5 animate-spin" />{state.stage === 'uploading' ? 'Uploading…' : 'Converting…'}</>
+                    : <><Zap className="h-5 w-5" />{targetFormat ? `Convert to ${targetFormat}` : 'Convert'}</>}
                 </Button>
-              )}
-            </div>
 
-            <StatusCard state={state} />
-
-            {state.stage === 'idle' && (
-              <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-4 py-3">
-                <Info className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
-                <span>
-                  Free plan: 50 conversions/month, max 10 MB per file.{' '}
-                  <Link href="/pricing" className="text-primary hover:underline">Upgrade for higher limits.</Link>
-                </span>
+                {state.stage === 'error' && (
+                  <Button variant="outline" className="w-full gap-2"
+                    onClick={() => setState({ stage: 'idle', uploadPct: 0, job: null, downloadUrl: null, error: null })}>
+                    <RefreshCw className="h-4 w-4" /> Try again
+                  </Button>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      </section>
 
+              <StatusCard state={state} />
+
+              {state.stage === 'idle' && (
+                <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-4 py-3">
+                  <Info className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+                  <span>
+                    Free plan: 1,000 conversions/day.{' '}
+                    <Link href="/pricing" className="text-primary hover:underline">View all plans.</Link>
+                  </span>
+                </div>
+              )}
+            </TabsContent>
+
+            {/* TAB 2: YouTube / Video URL Converter */}
+            <TabsContent value="youtube" className="space-y-6">
+              <YouTubeConverter />
+            </TabsContent>
+          </Tabs>
+        </main>
+
+        {/* Right Skyscraper Ad (Desktop) */}
+        <AdBanner position="right" />
+      </div>
+
+      {/* Feature Pills */}
       <section className="py-12 border-t bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
-              { icon: '🔒', title: 'Secure', desc: 'Files deleted after 24 hours' },
-              { icon: '⚡', title: 'Fast',   desc: 'Average under 5 seconds' },
-              { icon: '🌐', title: 'Any format', desc: '2,000+ supported' },
+              { icon: '🔒', title: 'Private & Secure', desc: 'In-browser or deleted after 24 hours' },
+              { icon: '⚡', title: 'Lightning Fast',   desc: 'Average under 3 seconds' },
+              { icon: '🌐', title: 'Universal Format', desc: 'Images, PDFs, ZIP, Audio, Video' },
             ].map((f) => (
               <div key={f.title} className="space-y-1.5">
                 <div className="text-2xl">{f.icon}</div>
@@ -609,6 +655,9 @@ function ConvertContent() {
           </div>
         </div>
       </section>
+
+      {/* Bottom Sticky Leaderboard Banner */}
+      <AdBanner position="bottom" />
     </div>
   );
 }
