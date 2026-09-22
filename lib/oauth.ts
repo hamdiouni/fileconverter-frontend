@@ -19,13 +19,15 @@ export function getGoogleRedirectUri(): string {
     return 'http://localhost/api/v1/auth/callback/google';
   }
 
-  const { origin, port } = window.location;
+  const { origin, port, hostname } = window.location;
 
   if (port === '8080') {
     return 'http://localhost:8080/api/auth/callback/google';
   }
   if (port === '3000') {
-    // If running on local dev/prod server port 3000
+    return 'http://localhost:3000/api/auth/callback/google';
+  }
+  if (hostname.includes('vercel.app')) {
     return `${origin}/api/auth/callback/google`;
   }
   // Default to standard gateway URL
@@ -69,13 +71,17 @@ export function getDirectGoogleAuthUrl(returnTo: string = '/dashboard'): string 
   let redirectUri = 'http://localhost:8080/api/auth/callback/google';
 
   if (typeof window !== 'undefined') {
-    if (window.location.port === '8080') {
+    const { port, origin, hostname } = window.location;
+    if (port === '8080') {
       redirectUri = 'http://localhost:8080/api/auth/callback/google';
-    } else if (window.location.port === '' || window.location.port === '80') {
-      redirectUri = `${window.location.origin}/api/v1/auth/callback/google`;
+    } else if (port === '3000') {
+      redirectUri = 'http://localhost:3000/api/auth/callback/google';
+    } else if (hostname.includes('vercel.app')) {
+      redirectUri = `${origin}/api/auth/callback/google`;
+    } else if (port === '' || port === '80') {
+      redirectUri = `${origin}/api/v1/auth/callback/google`;
     } else {
-      // Default to authorized port 8080 callback for local testing
-      redirectUri = 'http://localhost:8080/api/auth/callback/google';
+      redirectUri = `${origin}/api/auth/callback/google`;
     }
   }
 

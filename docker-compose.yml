@@ -1,0 +1,10 @@
+# FileConverter Pro – Root Docker Compose
+# Usage from project root:
+#   docker compose up -d --build
+#   docker compose down
+#   docker compose ps
+
+name: backend
+
+include:
+  - path: ./backend/docker-compose.yml

@@ -18,11 +18,12 @@ export async function GET(request: NextRequest) {
   let redirectUri = `${url.origin}/api/auth/callback/google`;
   if (url.port === '8080') {
     redirectUri = 'http://localhost:8080/api/auth/callback/google';
+  } else if (url.port === '3000') {
+    redirectUri = 'http://localhost:3000/api/auth/callback/google';
+  } else if (url.hostname.includes('vercel.app')) {
+    redirectUri = `${url.origin}/api/auth/callback/google`;
   } else if (url.port === '' || url.port === '80') {
     redirectUri = 'http://localhost/api/v1/auth/callback/google';
-  } else if (url.port === '3000') {
-    // If accessing from port 3000, route to authorized 8080 callback
-    redirectUri = 'http://localhost:8080/api/auth/callback/google';
   }
 
   const statePayload = {

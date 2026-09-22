@@ -2,37 +2,42 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --prefer-offline --omit=dev 2>/dev/null || npm ci --omit=dev
+RUN npm ci
 
-# ─── Stage 2: Build Next.js static export ────────────────────────────────────
+# ─── Stage 2: Build Next.js standalone application ──────────────────────────
 FROM node:20-alpine AS builder
 WORKDIR /app
-# Need dev deps for the build too
-COPY package.json package-lock.json ./
-RUN npm ci --prefer-offline 2>/dev/null || npm ci
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# API URL points to the Nginx gateway container inside Docker
-ENV NEXT_PUBLIC_API_URL=http://localhost/api/v1
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+ENV NEXT_PUBLIC_API_URL=http://localhost:80/api/v1
+ENV NEXT_PUBLIC_S3_ENDPOINT=http://localhost:9000
+ENV NEXT_PUBLIC_SITE_URL=http://localhost:8080
 RUN npm run build
 
-# ─── Stage 3: Serve the static export with Nginx ─────────────────────────────
-FROM nginx:1.25-alpine AS runner
-# wget is already in nginx:alpine; just add curl as fallback
-RUN apk add --no-cache curl
+# ─── Stage 3: Minimal Node.js runner ─────────────────────────────────────────
+FROM node:20-alpine AS runner
+WORKDIR /app
 
-# Remove default nginx config and page
-RUN rm -f /etc/nginx/conf.d/default.conf /usr/share/nginx/html/index.html
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV HOSTNAME="0.0.0.0"
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy the Next.js static export
-COPY --from=builder /app/out /usr/share/nginx/html
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# SPA-friendly Nginx config
-COPY docker/nginx-frontend.conf /etc/nginx/conf.d/default.conf
+# Copy static assets and standalone output
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-EXPOSE 80
+USER nextjs
 
-HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -fs http://localhost/healthz || exit 1
+EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=3 \
+    CMD wget -qO- http://127.0.0.1:8080/ || exit 1
+
+CMD ["node", "server.js"]
