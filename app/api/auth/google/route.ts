@@ -13,20 +13,16 @@ export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const returnTo = url.searchParams.get('returnTo') || '/dashboard';
 
-  // Determine redirect URI based on explicit config or current origin
-  let redirectUri =
-    process.env.GOOGLE_CALLBACK_URL ||
-    `${url.origin}/api/auth/callback/google`;
-
-  if (!process.env.GOOGLE_CALLBACK_URL) {
-    if (url.port === '8080') {
-      redirectUri = 'http://localhost:8080/api/auth/callback/google';
-    } else if (url.port === '' || url.port === '80') {
-      redirectUri = 'http://localhost/api/v1/auth/callback/google';
-    } else {
-      // Port 3000 or any other local port: default to the authorized port 8080 URI
-      redirectUri = 'http://localhost:8080/api/auth/callback/google';
-    }
+  // Determine redirect URI:
+  // Use registered Google Cloud Console URIs
+  let redirectUri = `${url.origin}/api/auth/callback/google`;
+  if (url.port === '8080') {
+    redirectUri = 'http://localhost:8080/api/auth/callback/google';
+  } else if (url.port === '' || url.port === '80') {
+    redirectUri = 'http://localhost/api/v1/auth/callback/google';
+  } else if (url.port === '3000') {
+    // If accessing from port 3000, route to authorized 8080 callback
+    redirectUri = 'http://localhost:8080/api/auth/callback/google';
   }
 
   const statePayload = {
@@ -47,5 +43,5 @@ export async function GET(request: NextRequest) {
   });
 
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-  return NextResponse.redirect(googleAuthUrl);
+  return NextResponse.redirect(googleAuthUrl, 302);
 }
