@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Check, Star, Zap, Crown, Building2, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { getAccessToken } from '@/lib/api-client';
+import { getAccessToken, clearStoredAuth, billing } from '@/lib/api-client';
 import { toast } from 'sonner';
 
 // Stripe price IDs configured for both monthly and yearly intervals
@@ -127,31 +127,27 @@ const basePlans = [
 async function startCheckout(priceId: string): Promise<void> {
   const token = getAccessToken();
   if (!token) {
-    window.location.href = '/auth/signup';
+    window.location.href = '/auth/signup?redirect=/pricing';
     return;
   }
 
-  const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:80/api/v1';
-  const res = await fetch(`${BASE}/billing/checkout-session`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-    body: JSON.stringify({
+  try {
+    const { url } = await billing.createCheckoutSession(
       priceId,
-      successUrl: `${window.location.origin}/dashboard?checkout=success`,
-      cancelUrl:  `${window.location.origin}/pricing`,
-    }),
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error((err as any)?.error?.message ?? `HTTP ${res.status}`);
+      `${window.location.origin}/dashboard?checkout=success`,
+      `${window.location.origin}/pricing`,
+    );
+    if (url) {
+      window.location.href = url;
+    }
+  } catch (err: any) {
+    if (err?.status === 401 || err?.statusCode === 401) {
+      clearStoredAuth();
+      window.location.href = '/auth/login?redirect=/pricing';
+      return;
+    }
+    throw err;
   }
-
-  const { url } = await res.json();
-  window.location.href = url;
 }
 
 export function PricingPlans() {
