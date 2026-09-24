@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Loader2, User, Lock, Trash2, CheckCircle, AlertCircle, Save } from 'lucide-react';
+import { Loader2, User, Lock, Trash2, CheckCircle, AlertCircle, Save, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,7 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { useAuthStore } from '@/lib/auth-store';
-import { users, ApiClientError, type UserProfile } from '@/lib/api-client';
+import { users, billing, ApiClientError, type UserProfile } from '@/lib/api-client';
 import { toast } from 'sonner';
 
 // ─── Schemas ──────────────────────────────────────────────────────────────────
@@ -34,6 +34,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving]   = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
 
   const { register, handleSubmit, reset, formState: { errors, isDirty } } =
     useForm<ProfileValues>({ resolver: zodResolver(profileSchema) });
@@ -60,6 +61,22 @@ export default function SettingsPage() {
       toast.error((err as ApiClientError).message ?? 'Failed to update profile');
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const res = await billing.createPortalSession(window.location.href);
+      if (res?.url) {
+        window.location.href = res.url;
+      } else {
+        toast.error('Could not open billing portal. Please try again.');
+      }
+    } catch (err: any) {
+      toast.error(err?.message ?? 'Failed to open customer portal');
+    } finally {
+      setPortalLoading(false);
     }
   };
 
@@ -150,9 +167,19 @@ export default function SettingsPage() {
                 {profile?.tier ?? 'free'}
               </span>
             </div>
-            {profile?.tier === 'free' && (
+            {profile?.tier === 'free' ? (
               <Button variant="outline" asChild className="w-full">
                 <a href="/pricing">Upgrade plan</a>
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                className="w-full gap-2"
+                onClick={handleManageSubscription}
+                disabled={portalLoading}
+              >
+                {portalLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
+                Manage subscription & billing
               </Button>
             )}
           </CardContent>

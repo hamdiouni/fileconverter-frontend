@@ -43,10 +43,10 @@ This guide details how to deploy the entire **FileConverter Pro** SaaS (Next.js 
    ```env
    DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-ID].supabase.co:5432/postgres
    ```
-4. Push database migrations:
+4. Apply database migrations:
    ```bash
    cd backend
-   npx prisma db push --schema=./prisma/schema.prisma
+   npx prisma migrate deploy --schema=./prisma/schema.prisma
    ```
 
 ---

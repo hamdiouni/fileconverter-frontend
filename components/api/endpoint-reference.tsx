@@ -14,60 +14,68 @@ const endpoints = [
     endpoints: [
       {
         method: 'POST',
-        path: '/upload',
-        description: 'Upload a file for conversion',
+        path: '/api/v1/uploads',
+        description: 'Initiate file upload and request a secure presigned URL',
         auth: 'Required',
         rateLimit: '100/hour',
         examples: {
-          curl: `curl -X POST https://api.fileconverterpro.com/v1/upload \\
+          curl: `curl -X POST https://api.fileconverterpro.com/api/v1/uploads \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
-  -F "file=@document.pdf" \\
-  -F "metadata={\\"name\\": \\"My Document\\"}"`,
+  -H "Content-Type: application/json" \\
+  -d '{
+    "filename": "document.pdf",
+    "contentType": "application/pdf",
+    "fileSize": 1048576
+  }'`,
           python: `import requests
 
-url = "https://api.fileconverterpro.com/v1/upload"
-headers = {"Authorization": "Bearer YOUR_API_KEY"}
-files = {"file": open("document.pdf", "rb")}
-data = {"metadata": '{"name": "My Document"}'}
+url = "https://api.fileconverterpro.com/api/v1/uploads"
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
+data = {
+    "filename": "document.pdf",
+    "contentType": "application/pdf",
+    "fileSize": 1048576
+}
 
-response = requests.post(url, headers=headers, files=files, data=data)
-print(response.json())`,
-          nodejs: `const FormData = require('form-data');
-const fs = require('fs');
-
-const form = new FormData();
-form.append('file', fs.createReadStream('document.pdf'));
-form.append('metadata', JSON.stringify({name: 'My Document'}));
-
-fetch('https://api.fileconverterpro.com/v1/upload', {
+response = requests.post(url, headers=headers, json=data)
+upload_info = response.json()
+print("Upload URL:", upload_info["uploadUrl"])`,
+          nodejs: `fetch('https://api.fileconverterpro.com/api/v1/uploads', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
-    ...form.getHeaders()
+    'Content-Type': 'application/json'
   },
-  body: form
+  body: JSON.stringify({
+    filename: 'document.pdf',
+    contentType: 'application/pdf',
+    fileSize: 1048576
+  })
 })
 .then(response => response.json())
-.then(data => console.log(data));`
+.then(data => console.log('Upload details:', data));`
         }
       },
       {
         method: 'GET',
-        path: '/files/{file_id}',
-        description: 'Get file information and metadata',
+        path: '/api/v1/uploads/{id}',
+        description: 'Retrieve uploaded file metadata and scanning status',
         auth: 'Required',
         rateLimit: '1000/hour',
         examples: {
-          curl: `curl -X GET https://api.fileconverterpro.com/v1/files/FILE_ID \\
+          curl: `curl -X GET https://api.fileconverterpro.com/api/v1/uploads/FILE_ID \\
   -H "Authorization: Bearer YOUR_API_KEY"`,
           python: `import requests
 
-url = f"https://api.fileconverterpro.com/v1/files/{file_id}"
+url = f"https://api.fileconverterpro.com/api/v1/uploads/{file_id}"
 headers = {"Authorization": "Bearer YOUR_API_KEY"}
 
 response = requests.get(url, headers=headers)
 print(response.json())`,
-          nodejs: `fetch(\`https://api.fileconverterpro.com/v1/files/\${file_id}\`, {
+          nodejs: `fetch(\`https://api.fileconverterpro.com/api/v1/uploads/\${file_id}\`, {
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY'
   }
@@ -78,21 +86,21 @@ print(response.json())`,
       },
       {
         method: 'DELETE',
-        path: '/files/{file_id}',
-        description: 'Delete a file from the system',
+        path: '/api/v1/uploads/{id}',
+        description: 'Permanently delete an uploaded file from storage',
         auth: 'Required',
         rateLimit: '100/hour',
         examples: {
-          curl: `curl -X DELETE https://api.fileconverterpro.com/v1/files/FILE_ID \\
+          curl: `curl -X DELETE https://api.fileconverterpro.com/api/v1/uploads/FILE_ID \\
   -H "Authorization: Bearer YOUR_API_KEY"`,
           python: `import requests
 
-url = f"https://api.fileconverterpro.com/v1/files/{file_id}"
+url = f"https://api.fileconverterpro.com/api/v1/uploads/{file_id}"
 headers = {"Authorization": "Bearer YOUR_API_KEY"}
 
 response = requests.delete(url, headers=headers)
 print(response.status_code)`,
-          nodejs: `fetch(\`https://api.fileconverterpro.com/v1/files/\${file_id}\`, {
+          nodejs: `fetch(\`https://api.fileconverterpro.com/api/v1/uploads/\${file_id}\`, {
   method: 'DELETE',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY'
@@ -108,49 +116,49 @@ print(response.status_code)`,
     endpoints: [
       {
         method: 'POST',
-        path: '/convert',
-        description: 'Convert a file to a different format',
+        path: '/api/v1/conversions',
+        description: 'Queue a file conversion job for processing',
         auth: 'Required',
         rateLimit: '50/hour',
         examples: {
-          curl: `curl -X POST https://api.fileconverterpro.com/v1/convert \\
+          curl: `curl -X POST https://api.fileconverterpro.com/api/v1/conversions \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "file_id": "FILE_ID",
-    "output_format": "docx",
+    "sourceFileId": "SOURCE_FILE_ID",
+    "targetFormat": "docx",
     "options": {
-      "quality": "high",
-      "ocr": true
+      "quality": "high"
     }
   }'`,
           python: `import requests
 
-url = "https://api.fileconverterpro.com/v1/convert"
-headers = {"Authorization": "Bearer YOUR_API_KEY"}
+url = "https://api.fileconverterpro.com/api/v1/conversions"
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
 data = {
-    "file_id": file_id,
-    "output_format": "docx",
+    "sourceFileId": source_file_id,
+    "targetFormat": "docx",
     "options": {
-        "quality": "high",
-        "ocr": True
+        "quality": "high"
     }
 }
 
 response = requests.post(url, headers=headers, json=data)
 print(response.json())`,
-          nodejs: `fetch('https://api.fileconverterpro.com/v1/convert', {
+          nodejs: `fetch('https://api.fileconverterpro.com/api/v1/conversions', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    file_id: file_id,
-    output_format: 'docx',
+    sourceFileId: source_file_id,
+    targetFormat: 'docx',
     options: {
-      quality: 'high',
-      ocr: true
+      quality: 'high'
     }
   })
 })
@@ -160,21 +168,21 @@ print(response.json())`,
       },
       {
         method: 'GET',
-        path: '/conversions/{conversion_id}',
-        description: 'Get conversion status and download link',
+        path: '/api/v1/conversions/{id}',
+        description: 'Get conversion status, progress, and result download info',
         auth: 'Required',
         rateLimit: '1000/hour',
         examples: {
-          curl: `curl -X GET https://api.fileconverterpro.com/v1/conversions/CONVERSION_ID \\
+          curl: `curl -X GET https://api.fileconverterpro.com/api/v1/conversions/JOB_ID \\
   -H "Authorization: Bearer YOUR_API_KEY"`,
           python: `import requests
 
-url = f"https://api.fileconverterpro.com/v1/conversions/{conversion_id}"
+url = f"https://api.fileconverterpro.com/api/v1/conversions/{job_id}"
 headers = {"Authorization": "Bearer YOUR_API_KEY"}
 
 response = requests.get(url, headers=headers)
 print(response.json())`,
-          nodejs: `fetch(\`https://api.fileconverterpro.com/v1/conversions/\${conversion_id}\`, {
+          nodejs: `fetch(\`https://api.fileconverterpro.com/api/v1/conversions/\${job_id}\`, {
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY'
   }
@@ -184,52 +192,26 @@ print(response.json())`,
         }
       },
       {
-        method: 'POST',
-        path: '/convert/batch',
-        description: 'Convert multiple files in batch',
+        method: 'GET',
+        path: '/api/v1/conversions',
+        description: 'List user conversion jobs with optional status filter and pagination',
         auth: 'Required',
-        rateLimit: '10/hour',
+        rateLimit: '200/hour',
         examples: {
-          curl: `curl -X POST https://api.fileconverterpro.com/v1/convert/batch \\
-  -H "Authorization: Bearer YOUR_API_KEY" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "conversions": [
-      {
-        "file_id": "FILE_ID_1",
-        "output_format": "pdf"
-      },
-      {
-        "file_id": "FILE_ID_2",
-        "output_format": "docx"
-      }
-    ]
-  }'`,
+          curl: `curl -X GET "https://api.fileconverterpro.com/api/v1/conversions?status=completed&page=1&pageSize=20" \\
+  -H "Authorization: Bearer YOUR_API_KEY"`,
           python: `import requests
 
-url = "https://api.fileconverterpro.com/v1/convert/batch"
+url = "https://api.fileconverterpro.com/api/v1/conversions"
 headers = {"Authorization": "Bearer YOUR_API_KEY"}
-data = {
-    "conversions": [
-        {"file_id": file_id_1, "output_format": "pdf"},
-        {"file_id": file_id_2, "output_format": "docx"}
-    ]
-}
+params = {"status": "completed", "page": 1, "pageSize": 20}
 
-response = requests.post(url, headers=headers, json=data)
+response = requests.get(url, headers=headers, params=params)
 print(response.json())`,
-          nodejs: `fetch('https://api.fileconverterpro.com/v1/convert/batch', {
-  method: 'POST',
+          nodejs: `fetch('https://api.fileconverterpro.com/api/v1/conversions?status=completed&page=1&pageSize=20', {
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    conversions: [
-      {file_id: file_id_1, output_format: 'pdf'},
-      {file_id: file_id_2, output_format: 'docx'}
-    ]
-  })
+    'Authorization': 'Bearer YOUR_API_KEY'
+  }
 })
 .then(response => response.json())
 .then(data => console.log(data));`
@@ -242,21 +224,21 @@ print(response.json())`,
     endpoints: [
       {
         method: 'GET',
-        path: '/account',
-        description: 'Get account information and limits',
+        path: '/api/v1/users/me',
+        description: 'Get authenticated user profile and subscription tier',
         auth: 'Required',
         rateLimit: '100/hour',
         examples: {
-          curl: `curl -X GET https://api.fileconverterpro.com/v1/account \\
+          curl: `curl -X GET https://api.fileconverterpro.com/api/v1/users/me \\
   -H "Authorization: Bearer YOUR_API_KEY"`,
           python: `import requests
 
-url = "https://api.fileconverterpro.com/v1/account"
+url = "https://api.fileconverterpro.com/api/v1/users/me"
 headers = {"Authorization": "Bearer YOUR_API_KEY"}
 
 response = requests.get(url, headers=headers)
 print(response.json())`,
-          nodejs: `fetch('https://api.fileconverterpro.com/v1/account', {
+          nodejs: `fetch('https://api.fileconverterpro.com/api/v1/users/me', {
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY'
   }
@@ -267,22 +249,21 @@ print(response.json())`,
       },
       {
         method: 'GET',
-        path: '/usage',
-        description: 'Get API usage statistics',
+        path: '/api/v1/users/me/usage',
+        description: 'Get current period conversion and quota usage statistics',
         auth: 'Required',
         rateLimit: '100/hour',
         examples: {
-          curl: `curl -X GET https://api.fileconverterpro.com/v1/usage?period=month \\
+          curl: `curl -X GET https://api.fileconverterpro.com/api/v1/users/me/usage \\
   -H "Authorization: Bearer YOUR_API_KEY"`,
           python: `import requests
 
-url = "https://api.fileconverterpro.com/v1/usage"
-params = {"period": "month"}
+url = "https://api.fileconverterpro.com/api/v1/users/me/usage"
 headers = {"Authorization": "Bearer YOUR_API_KEY"}
 
-response = requests.get(url, headers=headers, params=params)
+response = requests.get(url, headers=headers)
 print(response.json())`,
-          nodejs: `fetch('https://api.fileconverterpro.com/v1/usage?period=month', {
+          nodejs: `fetch('https://api.fileconverterpro.com/api/v1/users/me/usage', {
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY'
   }

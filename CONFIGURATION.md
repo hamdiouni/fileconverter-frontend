@@ -278,13 +278,13 @@ Error: Could not load `--schema` from provided path `prisma/schema.prisma`: file
 1. **Schema Path**: The root folder `prisma/schema.prisma` is located at `backend/prisma/schema.prisma`. Running `npx prisma` from the project root without `--schema=backend/prisma/schema.prisma` fails to find the schema.
 2. **Containerized Execution (Recommended)**: In Docker, `fc_db_migrate` runs automatically inside Alpine Linux with OpenSSL pre-installed (`apk add openssl`).
 3. **Manual Execution Command**:
-   To manually push database migrations from your host system or inside Docker:
+   To manually apply versioned database migrations from your host system or inside Docker:
    ```bash
    # From host system (inside backend/ directory):
-   npx prisma db push --schema=./prisma/schema.prisma
+   npx prisma migrate deploy --schema=./prisma/schema.prisma
 
    # Or inside Docker container:
-   docker exec -it fc_upload_service ./node_modules/.bin/prisma db push --schema=./prisma/schema.prisma
+   docker exec -it fc_upload_service ./node_modules/.bin/prisma migrate deploy --schema=./prisma/schema.prisma
    ```
 
 ---

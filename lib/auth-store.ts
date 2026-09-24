@@ -42,8 +42,21 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     if (get().isInitialized) return;
 
     const stored = getStoredAuth();
-    if (stored && stored.expiresAt > Date.now() + 60_000) {
+    if (!stored) {
+      set({ user: null, isInitialized: true });
+      return;
+    }
+
+    if (stored.expiresAt > Date.now() + 60_000) {
+      // Access token is valid
       set({ user: stored.user, isInitialized: true });
+    } else if (stored.refreshToken) {
+      // Access token is expired, but refresh token is available — preserve session and refresh in background
+      set({ user: stored.user, isInitialized: true });
+      authApi.refresh().catch(() => {
+        clearStoredAuth();
+        set({ user: null, profile: null });
+      });
     } else {
       clearStoredAuth();
       set({ user: null, isInitialized: true });

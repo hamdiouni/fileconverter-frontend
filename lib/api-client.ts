@@ -189,6 +189,41 @@ class ApiClientError extends Error {
   }
 }
 
+let refreshPromise: Promise<string | null> | null = null;
+
+async function attemptTokenRefresh(): Promise<string | null> {
+  if (refreshPromise) {
+    return refreshPromise;
+  }
+
+  const stored = getStoredAuth();
+  if (!stored?.refreshToken) return null;
+
+  refreshPromise = (async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/auth/refresh`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refreshToken: stored.refreshToken }),
+      });
+      if (!res.ok) {
+        clearStoredAuth();
+        return null;
+      }
+      const data = await res.json();
+      setStoredAuth(data, stored.user);
+      return data.accessToken as string;
+    } catch {
+      clearStoredAuth();
+      return null;
+    } finally {
+      refreshPromise = null;
+    }
+  })();
+
+  return refreshPromise;
+}
+
 async function request<T>(
   method: string,
   path: string,
@@ -197,6 +232,7 @@ async function request<T>(
     token?: string | null;
     headers?: Record<string, string>;
   } = {},
+  isRetry = false,
 ): Promise<T> {
   // If running in browser on remote HTTPS (like Vercel) and BASE_URL points to localhost:
   if (
@@ -225,6 +261,14 @@ async function request<T>(
     headers,
     body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
   });
+
+  // 401 Interceptor: attempt token refresh if not already retrying and not an auth endpoint
+  if (res.status === 401 && !isRetry && !path.startsWith('/auth/')) {
+    const newAccessToken = await attemptTokenRefresh();
+    if (newAccessToken) {
+      return request<T>(method, path, { ...options, token: newAccessToken }, true);
+    }
+  }
 
   if (res.status === 204) return undefined as unknown as T;
 
@@ -291,25 +335,11 @@ export const auth = {
   },
 
   async listApiKeys(): Promise<ApiKey[]> {
-    try {
-      const res = await request<any>('GET', '/auth/api-keys');
-      if (Array.isArray(res)) return res;
-      if (Array.isArray(res?.data)) return res.data;
-      if (Array.isArray(res?.keys)) return res.keys;
-      return [];
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('fc_api_keys');
-        if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            if (Array.isArray(parsed)) return parsed;
-          } catch {}
-        }
-        return [];
-      }
-      throw err;
-    }
+    const res = await request<any>('GET', '/auth/api-keys');
+    if (Array.isArray(res)) return res;
+    if (Array.isArray(res?.data)) return res.data;
+    if (Array.isArray(res?.keys)) return res.keys;
+    return [];
   },
 
   async createApiKey(
@@ -317,60 +347,13 @@ export const auth = {
     permissions: string[] = ['conversions:read', 'conversions:write'],
     expiresAt?: string,
   ): Promise<ApiKey & { key: string }> {
-    try {
-      const res = await request<any>('POST', '/auth/api-keys', { body: { name, permissions, expiresAt } });
-      const keyObj: ApiKey & { key: string } = res?.data ?? res;
-      return keyObj;
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const id = 'key_' + Math.random().toString(36).substring(2, 10);
-        const secret =
-          'fc_live_' +
-          Math.random().toString(36).substring(2, 18) +
-          Math.random().toString(36).substring(2, 18);
-        const newKey: ApiKey & { key: string } = {
-          id,
-          name,
-          permissions,
-          expiresAt: expiresAt || null,
-          createdAt: new Date().toISOString(),
-          lastUsedAt: null,
-          revokedAt: null,
-          key: secret,
-        };
-        const stored = localStorage.getItem('fc_api_keys');
-        let list: (ApiKey & { key?: string })[] = [];
-        if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            if (Array.isArray(parsed)) list = parsed;
-          } catch {}
-        }
-        list.unshift(newKey);
-        localStorage.setItem('fc_api_keys', JSON.stringify(list));
-        return newKey;
-      }
-      throw err;
-    }
+    const res = await request<any>('POST', '/auth/api-keys', { body: { name, permissions, expiresAt } });
+    const keyObj: ApiKey & { key: string } = res?.data ?? res;
+    return keyObj;
   },
 
   async revokeApiKey(id: string): Promise<void> {
-    try {
-      await request('DELETE', `/auth/api-keys/${id}`);
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('fc_api_keys');
-        if (stored) {
-          try {
-            const list: ApiKey[] = JSON.parse(stored);
-            const filtered = list.filter((k) => k.id !== id);
-            localStorage.setItem('fc_api_keys', JSON.stringify(filtered));
-            return;
-          } catch {}
-        }
-      }
-      throw err;
-    }
+    await request('DELETE', `/auth/api-keys/${id}`);
   },
 };
 
@@ -378,67 +361,15 @@ export const auth = {
 
 export const users = {
   async getProfile(): Promise<UserProfile> {
-    try {
-      return await request<UserProfile>('GET', '/users/me');
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const raw = localStorage.getItem('fc_user_profile');
-        if (raw) {
-          try {
-            return JSON.parse(raw) as UserProfile;
-          } catch {}
-        }
-      }
-      throw err;
-    }
+    return await request<UserProfile>('GET', '/users/me');
   },
 
   async updateProfile(data: Partial<Pick<UserProfile, 'name' | 'company'>>): Promise<UserProfile> {
-    try {
-      return await request<UserProfile>('PATCH', '/users/me', { body: data });
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const raw = localStorage.getItem('fc_user_profile');
-        const p = raw ? JSON.parse(raw) : {};
-        const updated: UserProfile = {
-          userId: p.userId || 'usr_me',
-          email: p.email || 'user@example.com',
-          name: data.name !== undefined ? data.name : (p.name || null),
-          company: data.company !== undefined ? data.company : (p.company || null),
-          avatar: p.avatar || null,
-          tier: p.tier || 'free',
-          createdAt: p.createdAt || new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-        };
-        localStorage.setItem('fc_user_profile', JSON.stringify(updated));
-        return updated;
-      }
-      throw err;
-    }
+    return await request<UserProfile>('PATCH', '/users/me', { body: data });
   },
 
   async getUsage(): Promise<UsageStats> {
-    try {
-      return await request<UsageStats>('GET', '/users/me/usage');
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        return {
-          conversionsThisMonth: 0,
-          apiCallsThisMonth: 0,
-          storageUsed: 0,
-          quotas: {
-            conversionsPerMonth: 50,
-            maxFileSize: 25 * 1024 * 1024,
-            apiCallsPerMonth: 100,
-            storageRetentionDays: 7,
-            priorityProcessing: false,
-            whiteLabel: false,
-          },
-          resetDate: new Date(Date.now() + 86400000 * 30).toISOString(),
-        };
-      }
-      throw err;
-    }
+    return await request<UsageStats>('GET', '/users/me/usage');
   },
 
   async deleteAccount(): Promise<void> {
@@ -460,75 +391,19 @@ export interface WebhookEndpoint {
 
 export const webhooksApi = {
   async list(): Promise<WebhookEndpoint[]> {
-    try {
-      const res = await request<any>('GET', '/webhooks');
-      if (Array.isArray(res)) return res;
-      if (Array.isArray(res?.data)) return res.data;
-      return [];
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('fc_webhooks');
-        if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            if (Array.isArray(parsed)) return parsed;
-          } catch {}
-        }
-        return [];
-      }
-      throw err;
-    }
+    const res = await request<any>('GET', '/webhooks');
+    if (Array.isArray(res)) return res;
+    if (Array.isArray(res?.data)) return res.data;
+    return [];
   },
 
   async create(url: string, events: string[]): Promise<WebhookEndpoint> {
-    try {
-      const res = await request<any>('POST', '/webhooks', { body: { url, events } });
-      return res?.data ?? res;
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const id = 'wh_' + Math.random().toString(36).substring(2, 10);
-        const newHook: WebhookEndpoint = {
-          id,
-          url,
-          events,
-          active: true,
-          createdAt: new Date().toISOString(),
-          lastDeliveryAt: null,
-          lastStatus: null,
-        };
-        const stored = localStorage.getItem('fc_webhooks');
-        let list: WebhookEndpoint[] = [];
-        if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            if (Array.isArray(parsed)) list = parsed;
-          } catch {}
-        }
-        list.unshift(newHook);
-        localStorage.setItem('fc_webhooks', JSON.stringify(list));
-        return newHook;
-      }
-      throw err;
-    }
+    const res = await request<any>('POST', '/webhooks', { body: { url, events } });
+    return res?.data ?? res;
   },
 
   async delete(id: string): Promise<void> {
-    try {
-      await request('DELETE', `/webhooks/${id}`);
-    } catch (err) {
-      if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('fc_webhooks');
-        if (stored) {
-          try {
-            const list: WebhookEndpoint[] = JSON.parse(stored);
-            const filtered = list.filter((h) => h.id !== id);
-            localStorage.setItem('fc_webhooks', JSON.stringify(filtered));
-            return;
-          } catch {}
-        }
-      }
-      throw err;
-    }
+    await request('DELETE', `/webhooks/${id}`);
   },
 };
 
@@ -611,7 +486,7 @@ export const uploads = {
   async getDownloadUrl(uploadId: string): Promise<{ url: string; expiresAt: string }> {
     const data = await request<{ downloadUrl?: string; url?: string; expiresIn?: number; expiresAt?: string }>(
       'GET',
-      `/uploads/${uploadId}/download`,
+      `/uploads/${encodeURIComponent(uploadId)}/download`,
     );
     return {
       url: data.downloadUrl ?? data.url ?? '',
@@ -687,6 +562,31 @@ export const conversions = {
   },
 };
 
+// ─── Billing endpoints ────────────────────────────────────────────────────────
+
+export const billing = {
+  async createCheckoutSession(
+    priceId: string,
+    successUrl: string,
+    cancelUrl: string,
+  ): Promise<{ sessionId: string; url: string }> {
+    return request('POST', '/billing/checkout-session', {
+      body: { priceId, successUrl, cancelUrl },
+    });
+  },
+
+  async createPortalSession(returnUrl: string): Promise<{ url: string }> {
+    return request('POST', '/billing/portal-session', {
+      body: { returnUrl },
+    });
+  },
+
+  async getUsageSummary(): Promise<any> {
+    return request('GET', '/billing/usage');
+  },
+};
+
 // ─── Re-export error class for instanceof checks in components ────────────────
 
 export { ApiClientError };
+
