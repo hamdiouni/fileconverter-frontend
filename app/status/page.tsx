@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import { LiveStatusMonitor } from '@/components/status/live-status-monitor';
 
 export const metadata: Metadata = { title: 'System Status - FileConverter Pro' };
 
@@ -35,8 +36,10 @@ export default function StatusPage() {
         </div>
       </section>
 
-      {/* Service grid */}
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
+      {/* Service grid & Live Monitor */}
+      <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <LiveStatusMonitor />
+
         <h2 className="text-2xl font-semibold mb-6 text-center">Service Status</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service) => (
